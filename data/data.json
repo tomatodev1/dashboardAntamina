@@ -1,0 +1,2757 @@
+{
+  "meta": {
+    "generado_en": "2026-08-15T09:08:47Z",
+    "fuente": "datos locales (prueba — sin Sheet configurado)",
+    "modelo": "logistic_regression",
+    "horizonte_dias": 30,
+    "umbral_alto": 0.8,
+    "umbral_medio": 0.44,
+    "n_niveles": 3,
+    "semana_mas_reciente": "2026-07-06"
+  },
+  "zonas": [
+    {
+      "ugt": "mina_san_marcos",
+      "label": "Mina San Marcos",
+      "provincia": "Huari, Áncash",
+      "color": "#5b9cf6",
+      "mapa_x": 32.0,
+      "mapa_y": 14.0,
+      "prob_actual": 0.4702,
+      "nivel_riesgo": "MEDIO",
+      "semana": "2026-07-06",
+      "tendencia_delta": -0.5298,
+      "n_eventos_1w": null,
+      "n_eventos_4w": null,
+      "dias_desde_ultima_protesta": null,
+      "racha_semanas_protesta": null,
+      "rep_antamina_neg_4w": null,
+      "rep_compromiso_4w": null,
+      "proxima_fecha_critica": null,
+      "alerta_electoral": null
+    },
+    {
+      "ugt": "huallanca",
+      "label": "Huallanca",
+      "provincia": "Bolognesi, Áncash",
+      "color": "#a78bfa",
+      "mapa_x": 67.0,
+      "mapa_y": 27.0,
+      "prob_actual": 0.2496,
+      "nivel_riesgo": "BAJO",
+      "semana": "2026-07-06",
+      "tendencia_delta": 0.1908,
+      "n_eventos_1w": null,
+      "n_eventos_4w": null,
+      "dias_desde_ultima_protesta": null,
+      "racha_semanas_protesta": null,
+      "rep_antamina_neg_4w": null,
+      "rep_compromiso_4w": null,
+      "proxima_fecha_critica": null,
+      "alerta_electoral": null
+    },
+    {
+      "ugt": "huarmey",
+      "label": "Huarmey",
+      "provincia": "Huarmey, Áncash",
+      "color": "#f87171",
+      "mapa_x": 25.0,
+      "mapa_y": 41.0,
+      "prob_actual": 0.903,
+      "nivel_riesgo": "ALTO",
+      "semana": "2026-07-06",
+      "tendencia_delta": -0.0965,
+      "n_eventos_1w": null,
+      "n_eventos_4w": null,
+      "dias_desde_ultima_protesta": null,
+      "racha_semanas_protesta": null,
+      "rep_antamina_neg_4w": null,
+      "rep_compromiso_4w": null,
+      "proxima_fecha_critica": null,
+      "alerta_electoral": null
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "label": "Valle Fortaleza",
+      "provincia": "Recuay/Bolognesi, Áncash",
+      "color": "#34d399",
+      "mapa_x": 53.0,
+      "mapa_y": 56.0,
+      "prob_actual": 0.4785,
+      "nivel_riesgo": "MEDIO",
+      "semana": "2026-07-06",
+      "tendencia_delta": 0.3331,
+      "n_eventos_1w": null,
+      "n_eventos_4w": null,
+      "dias_desde_ultima_protesta": null,
+      "racha_semanas_protesta": null,
+      "rep_antamina_neg_4w": null,
+      "rep_compromiso_4w": null,
+      "proxima_fecha_critica": null,
+      "alerta_electoral": null
+    }
+  ],
+  "serie_tiempo": [
+    {
+      "ugt": "huallanca",
+      "semana": "2024-09-09",
+      "prob": 0.981976,
+      "prob_suavizado": 0.981976,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-09-16",
+      "prob": 0.52567,
+      "prob_suavizado": 0.753823,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-09-23",
+      "prob": 0.959213,
+      "prob_suavizado": 0.856518,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-09-30",
+      "prob": 0.882566,
+      "prob_suavizado": 0.869542,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-10-07",
+      "prob": 0.99922,
+      "prob_suavizado": 0.934381,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-10-14",
+      "prob": 0.999994,
+      "prob_suavizado": 0.967187,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-10-21",
+      "prob": 0.538546,
+      "prob_suavizado": 0.752867,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-10-28",
+      "prob": 0.553295,
+      "prob_suavizado": 0.653081,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-11-04",
+      "prob": 0.437215,
+      "prob_suavizado": 0.545148,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-11-11",
+      "prob": 0.241444,
+      "prob_suavizado": 0.393296,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-11-18",
+      "prob": 0.384264,
+      "prob_suavizado": 0.38878,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-11-25",
+      "prob": 0.358797,
+      "prob_suavizado": 0.373788,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-12-02",
+      "prob": 0.432544,
+      "prob_suavizado": 0.403166,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-12-09",
+      "prob": 0.343625,
+      "prob_suavizado": 0.373396,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-12-16",
+      "prob": 0.640671,
+      "prob_suavizado": 0.507033,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-12-23",
+      "prob": 0.622713,
+      "prob_suavizado": 0.564873,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2024-12-30",
+      "prob": 0.346994,
+      "prob_suavizado": 0.455934,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-01-06",
+      "prob": 0.363568,
+      "prob_suavizado": 0.409751,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-01-13",
+      "prob": 0.393097,
+      "prob_suavizado": 0.401424,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-01-20",
+      "prob": 0.423429,
+      "prob_suavizado": 0.412426,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-01-27",
+      "prob": 0.397041,
+      "prob_suavizado": 0.404734,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-02-03",
+      "prob": 0.557192,
+      "prob_suavizado": 0.480963,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-02-10",
+      "prob": 0.530133,
+      "prob_suavizado": 0.505548,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-02-17",
+      "prob": 0.465639,
+      "prob_suavizado": 0.485593,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-02-24",
+      "prob": 0.438622,
+      "prob_suavizado": 0.462108,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-03-03",
+      "prob": 0.48625,
+      "prob_suavizado": 0.474179,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-03-10",
+      "prob": 0.459064,
+      "prob_suavizado": 0.466621,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-03-17",
+      "prob": 0.395931,
+      "prob_suavizado": 0.431276,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-03-24",
+      "prob": 0.921483,
+      "prob_suavizado": 0.67638,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-03-31",
+      "prob": 0.993794,
+      "prob_suavizado": 0.835087,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-04-07",
+      "prob": 0.74636,
+      "prob_suavizado": 0.790723,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-04-14",
+      "prob": 0.818081,
+      "prob_suavizado": 0.804402,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-04-21",
+      "prob": 0.968092,
+      "prob_suavizado": 0.886247,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-04-28",
+      "prob": 0.990146,
+      "prob_suavizado": 0.938197,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-05-05",
+      "prob": 0.715864,
+      "prob_suavizado": 0.82703,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-05-12",
+      "prob": 0.693161,
+      "prob_suavizado": 0.760096,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-05-19",
+      "prob": 0.601625,
+      "prob_suavizado": 0.68086,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-05-26",
+      "prob": 0.551105,
+      "prob_suavizado": 0.615983,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-06-02",
+      "prob": 0.95582,
+      "prob_suavizado": 0.785901,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-06-09",
+      "prob": 0.988081,
+      "prob_suavizado": 0.886991,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-06-16",
+      "prob": 0.620468,
+      "prob_suavizado": 0.75373,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-06-23",
+      "prob": 0.622412,
+      "prob_suavizado": 0.688071,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-06-30",
+      "prob": 0.584895,
+      "prob_suavizado": 0.636483,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-07-07",
+      "prob": 0.508561,
+      "prob_suavizado": 0.572522,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-07-14",
+      "prob": 0.530151,
+      "prob_suavizado": 0.551336,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-07-21",
+      "prob": 0.502913,
+      "prob_suavizado": 0.527125,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-07-28",
+      "prob": 0.99573,
+      "prob_suavizado": 0.761427,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-08-04",
+      "prob": 0.986679,
+      "prob_suavizado": 0.874053,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-08-11",
+      "prob": 0.461547,
+      "prob_suavizado": 0.6678,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-08-18",
+      "prob": 0.938831,
+      "prob_suavizado": 0.803316,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-08-25",
+      "prob": 0.384377,
+      "prob_suavizado": 0.593846,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-09-01",
+      "prob": 0.285489,
+      "prob_suavizado": 0.439668,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-09-08",
+      "prob": 0.421043,
+      "prob_suavizado": 0.430355,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-09-15",
+      "prob": 0.906617,
+      "prob_suavizado": 0.668486,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-09-22",
+      "prob": 0.448609,
+      "prob_suavizado": 0.558548,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-09-29",
+      "prob": 0.549094,
+      "prob_suavizado": 0.553821,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-10-06",
+      "prob": 0.562907,
+      "prob_suavizado": 0.558364,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-10-13",
+      "prob": 0.397394,
+      "prob_suavizado": 0.477879,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-10-20",
+      "prob": 0.301064,
+      "prob_suavizado": 0.389471,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-10-27",
+      "prob": 0.573657,
+      "prob_suavizado": 0.481564,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-11-03",
+      "prob": 0.555256,
+      "prob_suavizado": 0.51841,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-11-10",
+      "prob": 0.528178,
+      "prob_suavizado": 0.523294,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-11-17",
+      "prob": 0.626244,
+      "prob_suavizado": 0.574769,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-11-24",
+      "prob": 0.360204,
+      "prob_suavizado": 0.467487,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-12-01",
+      "prob": 0.405468,
+      "prob_suavizado": 0.436477,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-12-08",
+      "prob": 0.443929,
+      "prob_suavizado": 0.440203,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-12-15",
+      "prob": 0.24725,
+      "prob_suavizado": 0.343727,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-12-22",
+      "prob": 0.277715,
+      "prob_suavizado": 0.310721,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2025-12-29",
+      "prob": 0.372867,
+      "prob_suavizado": 0.341794,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-01-05",
+      "prob": 0.047528,
+      "prob_suavizado": 0.194661,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-01-12",
+      "prob": 0.069498,
+      "prob_suavizado": 0.132079,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-01-19",
+      "prob": 0.151612,
+      "prob_suavizado": 0.141846,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-01-26",
+      "prob": 0.138106,
+      "prob_suavizado": 0.139976,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-02-02",
+      "prob": 0.104166,
+      "prob_suavizado": 0.122071,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-02-09",
+      "prob": 0.058786,
+      "prob_suavizado": 0.090428,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-01-13",
+      "prob": 0.473303,
+      "prob_suavizado": 0.473303,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-01-20",
+      "prob": 0.941487,
+      "prob_suavizado": 0.707395,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-01-27",
+      "prob": 0.471653,
+      "prob_suavizado": 0.589524,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-02-03",
+      "prob": 0.959912,
+      "prob_suavizado": 0.774718,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-02-10",
+      "prob": 0.676382,
+      "prob_suavizado": 0.72555,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-02-17",
+      "prob": 0.582852,
+      "prob_suavizado": 0.654201,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-02-24",
+      "prob": 0.603721,
+      "prob_suavizado": 0.628961,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-03-03",
+      "prob": 0.579114,
+      "prob_suavizado": 0.604038,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-03-10",
+      "prob": 0.600041,
+      "prob_suavizado": 0.602039,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-03-17",
+      "prob": 0.573596,
+      "prob_suavizado": 0.587818,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-03-24",
+      "prob": 0.960138,
+      "prob_suavizado": 0.773978,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-03-31",
+      "prob": 0.661937,
+      "prob_suavizado": 0.717957,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-04-07",
+      "prob": 0.999447,
+      "prob_suavizado": 0.858702,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-04-14",
+      "prob": 0.995038,
+      "prob_suavizado": 0.92687,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-04-21",
+      "prob": 0.999452,
+      "prob_suavizado": 0.963161,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-04-28",
+      "prob": 0.766749,
+      "prob_suavizado": 0.864955,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-05-05",
+      "prob": 0.961896,
+      "prob_suavizado": 0.913426,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-05-12",
+      "prob": 0.990117,
+      "prob_suavizado": 0.951771,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-05-19",
+      "prob": 0.576874,
+      "prob_suavizado": 0.764323,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-05-26",
+      "prob": 0.996345,
+      "prob_suavizado": 0.880334,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-06-02",
+      "prob": 0.700861,
+      "prob_suavizado": 0.790597,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-06-09",
+      "prob": 0.655725,
+      "prob_suavizado": 0.723161,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-06-16",
+      "prob": 0.67498,
+      "prob_suavizado": 0.699071,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-06-23",
+      "prob": 0.574711,
+      "prob_suavizado": 0.636891,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-06-30",
+      "prob": 0.578494,
+      "prob_suavizado": 0.607692,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-07-07",
+      "prob": 0.99777,
+      "prob_suavizado": 0.802731,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-07-14",
+      "prob": 0.833137,
+      "prob_suavizado": 0.817934,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-07-21",
+      "prob": 0.817414,
+      "prob_suavizado": 0.817674,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-07-28",
+      "prob": 0.872476,
+      "prob_suavizado": 0.845075,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-08-04",
+      "prob": 0.989779,
+      "prob_suavizado": 0.917427,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-08-11",
+      "prob": 0.999996,
+      "prob_suavizado": 0.958712,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-08-18",
+      "prob": 0.999993,
+      "prob_suavizado": 0.979352,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-08-25",
+      "prob": 0.998874,
+      "prob_suavizado": 0.989113,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-09-01",
+      "prob": 0.587521,
+      "prob_suavizado": 0.788317,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-09-08",
+      "prob": 0.973729,
+      "prob_suavizado": 0.881023,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-09-15",
+      "prob": 0.998507,
+      "prob_suavizado": 0.939765,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-09-22",
+      "prob": 1.0,
+      "prob_suavizado": 0.969883,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-09-29",
+      "prob": 0.999985,
+      "prob_suavizado": 0.984934,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-10-06",
+      "prob": 1.0,
+      "prob_suavizado": 0.992467,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-10-13",
+      "prob": 0.999999,
+      "prob_suavizado": 0.996233,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-10-20",
+      "prob": 0.999913,
+      "prob_suavizado": 0.998073,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-10-27",
+      "prob": 0.906235,
+      "prob_suavizado": 0.952154,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-11-03",
+      "prob": 0.999676,
+      "prob_suavizado": 0.975915,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-11-10",
+      "prob": 0.999966,
+      "prob_suavizado": 0.98794,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-11-17",
+      "prob": 0.999988,
+      "prob_suavizado": 0.993964,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-11-24",
+      "prob": 0.999941,
+      "prob_suavizado": 0.996953,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-12-01",
+      "prob": 0.999994,
+      "prob_suavizado": 0.998473,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-12-08",
+      "prob": 0.846221,
+      "prob_suavizado": 0.922347,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-12-15",
+      "prob": 0.824618,
+      "prob_suavizado": 0.873483,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-12-22",
+      "prob": 0.846192,
+      "prob_suavizado": 0.859837,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2025-12-29",
+      "prob": 0.970639,
+      "prob_suavizado": 0.915238,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-01-05",
+      "prob": 0.954009,
+      "prob_suavizado": 0.934624,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-01-12",
+      "prob": 0.469013,
+      "prob_suavizado": 0.701818,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-01-19",
+      "prob": 0.999945,
+      "prob_suavizado": 0.850882,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-01-26",
+      "prob": 0.803842,
+      "prob_suavizado": 0.827362,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-02-02",
+      "prob": 0.991607,
+      "prob_suavizado": 0.909484,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-02-09",
+      "prob": 0.999462,
+      "prob_suavizado": 0.954473,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-09-23",
+      "prob": 0.970514,
+      "prob_suavizado": 0.970514,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-09-30",
+      "prob": 0.133857,
+      "prob_suavizado": 0.552185,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-10-07",
+      "prob": 0.958627,
+      "prob_suavizado": 0.755406,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-10-14",
+      "prob": 0.387396,
+      "prob_suavizado": 0.571401,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-10-21",
+      "prob": 0.911237,
+      "prob_suavizado": 0.741319,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-10-28",
+      "prob": 0.44803,
+      "prob_suavizado": 0.594675,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-11-04",
+      "prob": 0.999887,
+      "prob_suavizado": 0.797281,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-11-11",
+      "prob": 0.196043,
+      "prob_suavizado": 0.496662,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-11-18",
+      "prob": 0.382404,
+      "prob_suavizado": 0.439533,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-11-25",
+      "prob": 0.123239,
+      "prob_suavizado": 0.281386,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-12-02",
+      "prob": 0.348902,
+      "prob_suavizado": 0.315144,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-12-09",
+      "prob": 0.309177,
+      "prob_suavizado": 0.31216,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-12-16",
+      "prob": 0.336625,
+      "prob_suavizado": 0.324393,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-12-23",
+      "prob": 0.37265,
+      "prob_suavizado": 0.348521,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2024-12-30",
+      "prob": 0.478769,
+      "prob_suavizado": 0.413645,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-01-06",
+      "prob": 0.789505,
+      "prob_suavizado": 0.601575,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-01-13",
+      "prob": 0.933255,
+      "prob_suavizado": 0.767415,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-01-20",
+      "prob": 0.986629,
+      "prob_suavizado": 0.877022,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-01-27",
+      "prob": 0.597671,
+      "prob_suavizado": 0.737347,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-02-03",
+      "prob": 0.989805,
+      "prob_suavizado": 0.863576,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-02-10",
+      "prob": 0.98089,
+      "prob_suavizado": 0.922233,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-02-17",
+      "prob": 0.896775,
+      "prob_suavizado": 0.909504,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-02-24",
+      "prob": 0.904512,
+      "prob_suavizado": 0.907008,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-03-03",
+      "prob": 0.999569,
+      "prob_suavizado": 0.953288,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-03-10",
+      "prob": 0.999404,
+      "prob_suavizado": 0.976346,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-03-17",
+      "prob": 0.83141,
+      "prob_suavizado": 0.903878,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-03-24",
+      "prob": 0.998262,
+      "prob_suavizado": 0.95107,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-03-31",
+      "prob": 0.990572,
+      "prob_suavizado": 0.970821,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-04-07",
+      "prob": 0.999499,
+      "prob_suavizado": 0.98516,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-04-14",
+      "prob": 0.827956,
+      "prob_suavizado": 0.906558,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-04-21",
+      "prob": 0.584604,
+      "prob_suavizado": 0.745581,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-04-28",
+      "prob": 0.999936,
+      "prob_suavizado": 0.872759,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-05-05",
+      "prob": 1.0,
+      "prob_suavizado": 0.936379,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-05-12",
+      "prob": 0.975041,
+      "prob_suavizado": 0.95571,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-05-19",
+      "prob": 0.998572,
+      "prob_suavizado": 0.977141,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-05-26",
+      "prob": 0.999795,
+      "prob_suavizado": 0.988468,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-06-02",
+      "prob": 0.999074,
+      "prob_suavizado": 0.993771,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-06-09",
+      "prob": 0.788202,
+      "prob_suavizado": 0.890987,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-06-16",
+      "prob": 0.980269,
+      "prob_suavizado": 0.935628,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-06-23",
+      "prob": 0.723357,
+      "prob_suavizado": 0.829492,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-06-30",
+      "prob": 0.596154,
+      "prob_suavizado": 0.712823,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-07-07",
+      "prob": 0.825135,
+      "prob_suavizado": 0.768979,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-07-14",
+      "prob": 0.759298,
+      "prob_suavizado": 0.764139,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-07-21",
+      "prob": 0.774751,
+      "prob_suavizado": 0.769445,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-07-28",
+      "prob": 0.840163,
+      "prob_suavizado": 0.804804,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-08-04",
+      "prob": 0.946588,
+      "prob_suavizado": 0.875696,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-08-11",
+      "prob": 0.999969,
+      "prob_suavizado": 0.937832,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-08-18",
+      "prob": 1.0,
+      "prob_suavizado": 0.968916,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-08-25",
+      "prob": 0.999991,
+      "prob_suavizado": 0.984454,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-09-01",
+      "prob": 0.999989,
+      "prob_suavizado": 0.992221,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-09-08",
+      "prob": 0.99999,
+      "prob_suavizado": 0.996106,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-09-15",
+      "prob": 1.0,
+      "prob_suavizado": 0.998053,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-09-22",
+      "prob": 0.992403,
+      "prob_suavizado": 0.995228,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-09-29",
+      "prob": 0.999986,
+      "prob_suavizado": 0.997607,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-10-06",
+      "prob": 0.998347,
+      "prob_suavizado": 0.997977,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-10-13",
+      "prob": 0.998341,
+      "prob_suavizado": 0.998159,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-10-20",
+      "prob": 0.999919,
+      "prob_suavizado": 0.999039,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-10-27",
+      "prob": 0.853423,
+      "prob_suavizado": 0.926231,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-11-03",
+      "prob": 0.89804,
+      "prob_suavizado": 0.912135,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-11-10",
+      "prob": 0.728498,
+      "prob_suavizado": 0.820317,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-11-17",
+      "prob": 0.812727,
+      "prob_suavizado": 0.816522,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-11-24",
+      "prob": 0.683176,
+      "prob_suavizado": 0.749849,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-12-01",
+      "prob": 0.610105,
+      "prob_suavizado": 0.679977,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-12-08",
+      "prob": 0.646858,
+      "prob_suavizado": 0.663417,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-12-15",
+      "prob": 0.972796,
+      "prob_suavizado": 0.818107,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-12-22",
+      "prob": 0.977745,
+      "prob_suavizado": 0.897926,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2025-12-29",
+      "prob": 0.949245,
+      "prob_suavizado": 0.923585,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-01-05",
+      "prob": 0.80727,
+      "prob_suavizado": 0.865428,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-01-12",
+      "prob": 0.904295,
+      "prob_suavizado": 0.884861,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-01-19",
+      "prob": 0.993523,
+      "prob_suavizado": 0.939192,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-01-26",
+      "prob": 0.988734,
+      "prob_suavizado": 0.963963,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-02-02",
+      "prob": 0.992377,
+      "prob_suavizado": 0.97817,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-02-09",
+      "prob": 0.999953,
+      "prob_suavizado": 0.989062,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-11-18",
+      "prob": 0.33596,
+      "prob_suavizado": 0.33596,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-11-25",
+      "prob": 0.312073,
+      "prob_suavizado": 0.324016,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-12-02",
+      "prob": 0.41773,
+      "prob_suavizado": 0.370873,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-12-09",
+      "prob": 0.268666,
+      "prob_suavizado": 0.31977,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-12-16",
+      "prob": 0.888876,
+      "prob_suavizado": 0.604323,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-12-23",
+      "prob": 0.426041,
+      "prob_suavizado": 0.515182,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2024-12-30",
+      "prob": 0.534412,
+      "prob_suavizado": 0.524797,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-01-06",
+      "prob": 0.552366,
+      "prob_suavizado": 0.538581,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-01-13",
+      "prob": 0.452032,
+      "prob_suavizado": 0.495307,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-01-20",
+      "prob": 0.473533,
+      "prob_suavizado": 0.48442,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-01-27",
+      "prob": 0.44644,
+      "prob_suavizado": 0.46543,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-02-03",
+      "prob": 0.606475,
+      "prob_suavizado": 0.535952,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-02-10",
+      "prob": 0.580158,
+      "prob_suavizado": 0.558055,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-02-17",
+      "prob": 0.553377,
+      "prob_suavizado": 0.555716,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-02-24",
+      "prob": 0.526282,
+      "prob_suavizado": 0.540999,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-03-03",
+      "prob": 0.573702,
+      "prob_suavizado": 0.557351,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-03-10",
+      "prob": 0.994535,
+      "prob_suavizado": 0.775943,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-03-17",
+      "prob": 0.999895,
+      "prob_suavizado": 0.887919,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-03-24",
+      "prob": 0.998254,
+      "prob_suavizado": 0.943086,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-03-31",
+      "prob": 0.813174,
+      "prob_suavizado": 0.87813,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-04-07",
+      "prob": 0.662156,
+      "prob_suavizado": 0.770143,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-04-14",
+      "prob": 0.973445,
+      "prob_suavizado": 0.871794,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-04-21",
+      "prob": 0.989328,
+      "prob_suavizado": 0.930561,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-04-28",
+      "prob": 0.749605,
+      "prob_suavizado": 0.840083,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-05-05",
+      "prob": 0.735294,
+      "prob_suavizado": 0.787689,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-05-12",
+      "prob": 0.973742,
+      "prob_suavizado": 0.880715,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-05-19",
+      "prob": 0.669523,
+      "prob_suavizado": 0.775119,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-05-26",
+      "prob": 0.997007,
+      "prob_suavizado": 0.886063,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-06-02",
+      "prob": 0.793389,
+      "prob_suavizado": 0.839726,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-06-09",
+      "prob": 0.688591,
+      "prob_suavizado": 0.764159,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-06-16",
+      "prob": 0.70683,
+      "prob_suavizado": 0.735494,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-06-23",
+      "prob": 0.61072,
+      "prob_suavizado": 0.673107,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-06-30",
+      "prob": 0.614397,
+      "prob_suavizado": 0.643752,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-07-07",
+      "prob": 0.563453,
+      "prob_suavizado": 0.603603,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-07-14",
+      "prob": 0.958525,
+      "prob_suavizado": 0.781064,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-07-21",
+      "prob": 0.645568,
+      "prob_suavizado": 0.713316,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-07-28",
+      "prob": 0.735697,
+      "prob_suavizado": 0.724506,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-08-04",
+      "prob": 0.556366,
+      "prob_suavizado": 0.640436,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-08-11",
+      "prob": 0.456045,
+      "prob_suavizado": 0.548241,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-08-18",
+      "prob": 0.440529,
+      "prob_suavizado": 0.494385,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-08-25",
+      "prob": 0.479634,
+      "prob_suavizado": 0.487009,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-09-01",
+      "prob": 0.460988,
+      "prob_suavizado": 0.473999,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-09-08",
+      "prob": 0.434021,
+      "prob_suavizado": 0.45401,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-09-15",
+      "prob": 0.407439,
+      "prob_suavizado": 0.430724,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-09-22",
+      "prob": 0.381388,
+      "prob_suavizado": 0.406056,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-09-29",
+      "prob": 0.356002,
+      "prob_suavizado": 0.381029,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-10-06",
+      "prob": 0.368932,
+      "prob_suavizado": 0.374981,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-10-13",
+      "prob": 0.286488,
+      "prob_suavizado": 0.330734,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-10-20",
+      "prob": 0.264716,
+      "prob_suavizado": 0.297725,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-10-27",
+      "prob": 0.201572,
+      "prob_suavizado": 0.249649,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-11-03",
+      "prob": 0.189794,
+      "prob_suavizado": 0.219721,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-11-10",
+      "prob": 0.173582,
+      "prob_suavizado": 0.196652,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-11-17",
+      "prob": 0.158485,
+      "prob_suavizado": 0.177568,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-11-24",
+      "prob": 0.219901,
+      "prob_suavizado": 0.198735,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-12-01",
+      "prob": 0.56465,
+      "prob_suavizado": 0.381692,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-12-08",
+      "prob": 0.24018,
+      "prob_suavizado": 0.310936,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-12-15",
+      "prob": 0.812573,
+      "prob_suavizado": 0.561755,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-12-22",
+      "prob": 0.588905,
+      "prob_suavizado": 0.57533,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2025-12-29",
+      "prob": 0.736922,
+      "prob_suavizado": 0.656126,
+      "nivel": "MEDIO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-01-05",
+      "prob": 0.824399,
+      "prob_suavizado": 0.740262,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-01-12",
+      "prob": 0.171229,
+      "prob_suavizado": 0.455746,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-01-19",
+      "prob": 0.183855,
+      "prob_suavizado": 0.3198,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-01-26",
+      "prob": 0.801336,
+      "prob_suavizado": 0.560568,
+      "nivel": "ALTO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-02-02",
+      "prob": 0.134975,
+      "prob_suavizado": 0.347772,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-02-09",
+      "prob": 0.145397,
+      "prob_suavizado": 0.246584,
+      "nivel": "BAJO",
+      "origen": "oof_backfill"
+    },
+    {
+      "ugt": "huarmey",
+      "semana": "2026-07-06",
+      "prob": 0.903,
+      "prob_suavizado": 0.928737,
+      "nivel": "ALTO",
+      "origen": "scoring_modelo"
+    },
+    {
+      "ugt": "valle_fortaleza",
+      "semana": "2026-07-06",
+      "prob": 0.4785,
+      "prob_suavizado": 0.362542,
+      "nivel": "MEDIO",
+      "origen": "scoring_modelo"
+    },
+    {
+      "ugt": "mina_san_marcos",
+      "semana": "2026-07-06",
+      "prob": 0.4702,
+      "prob_suavizado": 0.729631,
+      "nivel": "MEDIO",
+      "origen": "scoring_modelo"
+    },
+    {
+      "ugt": "huallanca",
+      "semana": "2026-07-06",
+      "prob": 0.2496,
+      "prob_suavizado": 0.170014,
+      "nivel": "BAJO",
+      "origen": "scoring_modelo"
+    }
+  ],
+  "calibracion_modelo": [
+    {
+      "nivel": "ALTO",
+      "umbral": 0.8,
+      "n": 76,
+      "tasa_acierto": 0.75,
+      "recall": 0.69,
+      "descripcion": "Umbral calibrado OOF · precisión 75%, recall 69%"
+    },
+    {
+      "nivel": "MEDIO",
+      "umbral": 0.44,
+      "n": 72,
+      "tasa_acierto": 0.58,
+      "recall": 0.82,
+      "descripcion": "Riesgo mayor que la tasa histórica (43.9%)"
+    },
+    {
+      "nivel": "BAJO",
+      "umbral": 0.0,
+      "n": 47,
+      "tasa_acierto": 0.15,
+      "recall": 0.95,
+      "descripcion": "Prob < 44% — baja actividad esperada"
+    }
+  ],
+  "calendario_fechas_criticas": [
+    {
+      "evento": "Metales pesados, agua, salud pública y operación portuaria",
+      "tipo": "Socioambiental / salud",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "Todo el año; mayor exposición tras resultados de monitoreo",
+      "evidencia_historica": "La preocupación por los acuíferos y la exposición a metales se registra desde 2012 y se reactivó con tamizajes, evaluaciones y pronunciamientos entre 2023 y 2026.",
+      "ugts": [
+        "huarmey"
+      ]
+    },
+    {
+      "evento": "Disponibilidad de agua, calidad ambiental, metales y compromisos sociales",
+      "tipo": "Socioambiental / agua",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "Febrero–mayo",
+      "evidencia_historica": "Al finalizar la temporada de lluvias aumenta la atención sobre caudales, fuentes de agua y resultados ambientales; las preocupaciones se repiten, aunque sin un día anual único.",
+      "ugts": [
+        "mina_san_marcos"
+      ]
+    },
+    {
+      "evento": "Empleo local, proveedores, contrataciones directas y acceso a oportunidades",
+      "tipo": "Laboral / contratación",
+      "criticidad": "MEDIO-ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "Enero–marzo y antes de nuevos contratos",
+      "evidencia_historica": "Las demandas laborales y de contratación local suelen activarse con rotaciones, inicio de proyectos, cambios de contratistas o percepción de exclusión; no existe una fecha exacta común.",
+      "ugts": [
+        "mina_san_marcos",
+        "huallanca"
+      ]
+    },
+    {
+      "evento": "Aniversarios, cruces, fiestas patronales y Día Internacional del Trabajo",
+      "tipo": "Cívico / tradicional",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "25 de abril–6 de mayo",
+      "evidencia_historica": "Cada año se superponen celebraciones cívicas y religiosas con el 1 de mayo, generando alta movilidad, reuniones comunales y espacios para pronunciamientos.",
+      "ugts": [
+        "mina_san_marcos",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "San Pedro, San Juan, Día del Campesino y demandas agrarias",
+      "tipo": "Comunal / agrario",
+      "criticidad": "MEDIO-ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "23–29 de junio",
+      "evidencia_historica": "Las fechas convocan anualmente a comunidades campesinas, autoridades y asociaciones; facilitan asambleas, balances y presentación pública de demandas.",
+      "ugts": [
+        "mina_san_marcos",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "Festividad de la Virgen del Carmen",
+      "tipo": "Patronal / concentración social",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "15–18 de julio",
+      "evidencia_historica": "La festividad se realiza cada año y concentra población local, visitantes, autoridades, actividades religiosas y eventos nocturnos.",
+      "ugts": [
+        "mina_san_marcos",
+        "huallanca"
+      ]
+    },
+    {
+      "evento": "Fiestas Patrias, semana turística y posibles protestas nacionales",
+      "tipo": "Político nacional / festivo",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "27 de julio–1 de agosto",
+      "evidencia_historica": "Las celebraciones patrias son anuales; las marchas o paros dependen de la coyuntura política y de la adhesión de organizaciones locales.",
+      "ugts": [
+        "mina_san_marcos",
+        "huallanca",
+        "huarmey",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "San Lorenzo, Santa Rosa de Lima, ferias taurinas y retorno de residentes",
+      "tipo": "Patronal / concentración social",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "8 de agosto–4 de septiembre",
+      "evidencia_historica": "Las festividades se repiten cada año y generan una secuencia de eventos masivos, comparsas, corridas y tránsito de visitantes.",
+      "ugts": [
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "San Miguel Arcángel y Virgen de las Mercedes",
+      "tipo": "Patronal / concentración social",
+      "criticidad": "MEDIO-ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "22 de septiembre–3 de octubre",
+      "evidencia_historica": "Ambas celebraciones son anuales y concentran actividades religiosas, culturales y sociales durante varios días.",
+      "ugts": [
+        "huallanca",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "Virgen del Rosario, agenda provincial, salud y ambiente",
+      "tipo": "Cívico / socioambiental",
+      "criticidad": "MEDIO-ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "Primera quincena de octubre",
+      "evidencia_historica": "La festividad patronal se repite anualmente y concentra autoridades y población; las demandas ambientales y sanitarias pueden aprovechar esta visibilidad.",
+      "ugts": [
+        "huarmey"
+      ]
+    },
+    {
+      "evento": "Memoria del bloqueo de 2021 y reclamos por tierras, compensaciones y beneficios",
+      "tipo": "Histórica socioambiental",
+      "criticidad": "MEDIO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "24 de octubre–2 de noviembre",
+      "evidencia_historica": "En 2021 la comunidad de Aquia bloqueó operaciones y suspendió la protesta el 2 de noviembre; la fecha conserva valor de antecedente, pero no muestra recurrencia anual sólida.",
+      "ugts": [
+        "huallanca"
+      ]
+    },
+    {
+      "evento": "Aniversarios distritales y actividades cívicas",
+      "tipo": "Cívico / concentración social",
+      "criticidad": "MEDIO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "17 de octubre–8 de noviembre",
+      "evidencia_historica": "Los aniversarios se celebran cada año con sesiones solemnes, desfiles, verbenas, ferias y retorno de residentes.",
+      "ugts": [
+        "mina_san_marcos",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "Aniversarios cívicos locales",
+      "tipo": "Cívico / concentración social",
+      "criticidad": "MEDIO-ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "21–23 de noviembre",
+      "evidencia_historica": "Las fechas se repiten anualmente y concentran verbenas, desfiles, ferias y presencia de autoridades.",
+      "ugts": [
+        "huallanca",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "Aniversario provincial, Navidad, retorno de residentes y alta movilidad",
+      "tipo": "Cívico / fin de año",
+      "criticidad": "MEDIO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "20–31 de diciembre",
+      "evidencia_historica": "El aniversario de Huarmey y las fiestas de fin de año se repiten anualmente, elevando tránsito, consumo y eventos públicos.",
+      "ugts": [
+        "huarmey",
+        "huallanca"
+      ]
+    },
+    {
+      "evento": "Elecciones regionales, provinciales y distritales 2026",
+      "tipo": "Político-electoral",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "15 de julio–14 de octubre de 2026",
+      "evidencia_historica": "Los procesos municipales generan de forma recurrente tachas, disputas internas, denuncias de fraude, votos golondrinos y protestas durante escrutinio.",
+      "ugts": [
+        "mina_san_marcos",
+        "huallanca",
+        "huarmey",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "Lluvias, deslizamientos, interrupción vial y aislamiento de comunidades",
+      "tipo": "Climático / vial",
+      "criticidad": "ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "Diciembre–marzo",
+      "evidencia_historica": "La temporada de lluvias se repite cada año y provoca derrumbes, deterioro de vías y restricciones de tránsito, que pueden activar reclamos comunales.",
+      "ugts": [
+        "mina_san_marcos",
+        "huallanca",
+        "valle_fortaleza"
+      ]
+    },
+    {
+      "evento": "Mineroducto, obras viales, respuesta a incidentes y percepción de riesgo ambiental",
+      "tipo": "Vial / ambiental",
+      "criticidad": "MEDIO-ALTO",
+      "fecha": null,
+      "dias_restantes": null,
+      "fecha_periodo": "Todo el año; mayor exposición ante incidentes",
+      "evidencia_historica": "El corredor registra antecedentes de derrames en Cajacay y Paramonga; la preocupación se reactiva ante obras, excavaciones o cualquier incidente cercano al mineroducto.",
+      "ugts": [
+        "valle_fortaleza"
+      ]
+    }
+  ],
+  "eventos_historicos": [],
+  "actores_criticos": [
+    {
+      "nombre": "Martín Cabrera",
+      "cargo_o_rol": "Alcalde Huarmey / Abogado (demanda a Antamina)",
+      "distrito_o_zona": "Huarmey",
+      "n_apariciones": 12,
+      "ultima_mencion": "2026-05-31",
+      "contexto_resumen": "Movimiento Regional Ayllu expresó respaldo a Martín Cabrera, denunciando persecución de Antamina y defendiendo derechos humanos, ambientales y justicia comunitaria."
+    },
+    {
+      "nombre": "Manuel Ugarte",
+      "cargo_o_rol": "Alcalde San Marcos",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 8,
+      "ultima_mencion": "2026-02-01",
+      "contexto_resumen": "Acusan al alcalde Manuel Ugarte de aprobar expedientes sin sustento técnico en solo 12 días, favoreciendo presuntamente a Antamina en la ejecución de un proyecto de vivienda. \u000b\u000bFuente: Noticias – SHE "
+    },
+    {
+      "nombre": "Dina Boluarte",
+      "cargo_o_rol": "Presidente de la República",
+      "distrito_o_zona": "Áncash (general)",
+      "n_apariciones": 5,
+      "ultima_mencion": "2025-10-12",
+      "contexto_resumen": "OF. LIMA\n\nDiversos gremios acatan paro nacional en rechazo a la violencia y crimen organizado. Exigen renuncia de Dina Boluarte y medidas urgentes en Lima y regiones.\u000b\u000bFuente:  Infobae(Link)"
+    },
+    {
+      "nombre": "Kelly Portalatino",
+      "cargo_o_rol": "Congresista (circunscripción Lima-Áncash)",
+      "distrito_o_zona": "Huarmey, Valle Fortaleza",
+      "n_apariciones": 5,
+      "ultima_mencion": "2026-03-01",
+      "contexto_resumen": "Kelly Portalatino participa en mesa de dialogo con Antamina.\n(Link)"
+    },
+    {
+      "nombre": "Rafael López Aliaga",
+      "cargo_o_rol": "Candidato / político nacional",
+      "distrito_o_zona": "Áncash (general)",
+      "n_apariciones": 5,
+      "ultima_mencion": "2026-05-17",
+      "contexto_resumen": "El 16 de enero Rafael López Aliaga realizó actividad proselitista en Huaraz y planteó que Antamina invierta 50% impuestos regionales."
+    },
+    {
+      "nombre": "Roger Ariza",
+      "cargo_o_rol": "Funcionario OEFA",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 5,
+      "ultima_mencion": "2026-03-29",
+      "contexto_resumen": "YANACANCHA\n\nLa Comunidad Campesina de Huaripampa instalo casetas y traslado ganado en terrenos colindante a la Operación minera Yanacancha \nFuente:  Roger Ariza (Link)"
+    },
+    {
+      "nombre": "Vladimir Meza",
+      "cargo_o_rol": "Líder político (País para Todos)",
+      "distrito_o_zona": "Áncash (general)",
+      "n_apariciones": 5,
+      "ultima_mencion": "2026-05-10",
+      "contexto_resumen": "Vladimir Meza rechazó campaña contra País para Todos, calificándola de burda, caduca y prometiendo defenderse legalmente."
+    },
+    {
+      "nombre": "José Jerí",
+      "cargo_o_rol": "Referente político (Generación Z / contexto nacional)",
+      "distrito_o_zona": "Áncash (general)",
+      "n_apariciones": 4,
+      "ultima_mencion": "2026-02-01",
+      "contexto_resumen": "El 14 noviembre, Generación Z realizó manifestación nacional para visibilizar avance de criminalidad y expresar descontento estudiantil frente al gobierno de José Jerí."
+    },
+    {
+      "nombre": "Koki Noriega",
+      "cargo_o_rol": "Gobernador Regional",
+      "distrito_o_zona": "Áncash (general)",
+      "n_apariciones": 4,
+      "ultima_mencion": "2026-04-19",
+      "contexto_resumen": "Alcalde provincial de Huarmey participó en segunda audiencia pública regional 2025, presidida por gobernador Koki Noriega."
+    },
+    {
+      "nombre": "Roberto Sánchez",
+      "cargo_o_rol": "Dirigente CGTP",
+      "distrito_o_zona": "Áncash (general)",
+      "n_apariciones": 4,
+      "ultima_mencion": "2026-06-28",
+      "contexto_resumen": "CGTP realizó marcha por el Día del Trabajador el 1 de mayo en Lima, con Roberto Sánchez y dirigentes políticos."
+    },
+    {
+      "nombre": "Joel Muñoz",
+      "cargo_o_rol": "Dirigente FEDIP Chavín de Huántar",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 3,
+      "ultima_mencion": "2026-05-03",
+      "contexto_resumen": "El 25 de febrero Julio Rímac publicó una historia de Facebook donde aparece junto a Joel Muñoz, dirigente del FEDIP Chavín de Huántar."
+    },
+    {
+      "nombre": "Julio César Rímac Damián",
+      "cargo_o_rol": "Presidente Frente de Defensa de San Marcos",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 3,
+      "ultima_mencion": "2026-03-01",
+      "contexto_resumen": "El presidente del Frente de Defensa de San Marcos, Julio César Rímac Damián, informó que tramita la nulidad del MEIA de Antamina. Julio Rímac convoca reuniones de protesta y lidera demandas ambientales contra la operación."
+    },
+    {
+      "nombre": "Waly Medina",
+      "cargo_o_rol": "Candidato político - San Marcos",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 3,
+      "ultima_mencion": "2026-06-07",
+      "contexto_resumen": "Yanacancha registra actividad política y social por propuesta de Waly Medina, seguimiento vial en Llata y denuncias toxicológicas en San Marcos; el Concentraducto reúne mantenimiento vial, cuestionami"
+    },
+    {
+      "nombre": "Carmen Sayán",
+      "cargo_o_rol": "Abogada (contraparte legal Antamina)",
+      "distrito_o_zona": "Huarmey",
+      "n_apariciones": 2,
+      "ultima_mencion": "2026-06-28",
+      "contexto_resumen": "Cuestionan vínculo corporativo por retiro de Carmen Sayán en vehículo de Antamina tras diligencia por denuncia verbal."
+    },
+    {
+      "nombre": "Consejero Montoya",
+      "cargo_o_rol": "Consejero Regional Áncash",
+      "distrito_o_zona": "Huallanca, Valle Fortaleza",
+      "n_apariciones": 2,
+      "ultima_mencion": "2025-12-07",
+      "contexto_resumen": "05.08.25 - Consejero Montoya supervisa pasivos mineros que vienen contaminando quebrada en Recuay. (Link)"
+    },
+    {
+      "nombre": "David Rosales",
+      "cargo_o_rol": "Alcalde Huaraz",
+      "distrito_o_zona": "Valle Fortaleza",
+      "n_apariciones": 2,
+      "ultima_mencion": "2025-10-05",
+      "contexto_resumen": "Contraloría advierte ejecución deficiente del presupuesto en Huaraz. A julio del 2025, la gestión del alcalde David Rosales solo ejecutó el 28.3% de inversión."
+    },
+    {
+      "nombre": "Duberli Pintado",
+      "cargo_o_rol": "Funcionario OEFA",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 2,
+      "ultima_mencion": "2025-10-05",
+      "contexto_resumen": "OEFA monitoreó laguna altoandina en Áncash, con presencia de Duberli Pintado y Roger Ariza, registrando pH ambientalmente elevado 8.8."
+    },
+    {
+      "nombre": "Ladislao Cruz",
+      "cargo_o_rol": "Alcalde Independencia",
+      "distrito_o_zona": "Valle Fortaleza",
+      "n_apariciones": 2,
+      "ultima_mencion": "2025-11-02",
+      "contexto_resumen": "Alcalde de Independencia, Ladislao Cruz, es denunciado por proselitismo político; JNE habría ratificado sanción por uso indebido de recursos municipales."
+    },
+    {
+      "nombre": "Lorgio Ríos",
+      "cargo_o_rol": "Alcalde Huari",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 2,
+      "ultima_mencion": "2025-10-19",
+      "contexto_resumen": "Fiscalía Anticorrupción de Huari mantiene investigación contra alcalde Lorgio Ríos por presunto nombramiento ilegal, abuso de autoridad y falsificación documental."
+    },
+    {
+      "nombre": "Pichiu Quinhuaragra",
+      "cargo_o_rol": "Presidente Comunidad Campesina Huaripampa",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 2,
+      "ultima_mencion": "2025-03-31",
+      "contexto_resumen": "OF. SAN MARCOS\n\n Se llevaron a cabo talleres descentralizados del Plan de Desarrollo Local Concertado (PDLC) 2025-2040 en Huaripampa Bajo, Carhuayoc y Pichiu Quinhuaragra. En estos encuentros, la pobl"
+    },
+    {
+      "nombre": "Yolanda Chávez",
+      "cargo_o_rol": "Alcaldesa San Marcos (anterior a Ugarte)",
+      "distrito_o_zona": "Mina San Marcos",
+      "n_apariciones": 1,
+      "ultima_mencion": "2025-01-01",
+      "contexto_resumen": "Exalcaldesa de San Marcos referenciada en contexto de transición política post-ERM 2024."
+    }
+  ],
+  "alertas_electorales_2026": [
+    {
+      "periodo": "Periodo operativo",
+      "fase": "Fase",
+      "riesgo": "Riesgo",
+      "accion_recomendada": "Acción recomendada"
+    },
+    {
+      "periodo": "15 julio–5 agosto 2026",
+      "fase": "Inscripción y admisión de listas",
+      "riesgo": "Medio",
+      "accion_recomendada": "Seguimiento diario de resoluciones, medios y redes políticas"
+    },
+    {
+      "periodo": "6–20 agosto 2026",
+      "fase": "Tachas y exclusiones iniciales",
+      "riesgo": "Medio-alto",
+      "accion_recomendada": "Mapear sedes JEE, líderes, rutas y puntos de concentración"
+    },
+    {
+      "periodo": "21 agosto–5 septiembre 2026",
+      "fase": "Apelaciones y candidaturas definitivas",
+      "riesgo": "Alto",
+      "accion_recomendada": "Elevar alerta y monitorear sedes electorales y carreteras de llegada"
+    },
+    {
+      "periodo": "22 septiembre–3 octubre 2026",
+      "fase": "Cierre de campaña",
+      "riesgo": "Alto",
+      "accion_recomendada": "Separar rutas, horarios y puntos de concentración de actividades rivales"
+    },
+    {
+      "periodo": "4 octubre 2026",
+      "fase": "Jornada electoral",
+      "riesgo": "Alto",
+      "accion_recomendada": "Puesto de monitoreo desde apertura hasta cierre de locales"
+    },
+    {
+      "periodo": "5–14 octubre 2026",
+      "fase": "Escrutinio y posresultados",
+      "riesgo": "Muy alto",
+      "accion_recomendada": "Máxima alerta y seguimiento continuo de actas y convocatorias"
+    },
+    {
+      "periodo": "Segunda elección regional, si corresponde",
+      "fase": "Nueva campaña y jornada",
+      "riesgo": "Medio-alto",
+      "accion_recomendada": "Reactivar protocolo electoral completo y monitorear traslado de delegaciones"
+    }
+  ]
+}
