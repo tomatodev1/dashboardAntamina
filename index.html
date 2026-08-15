@@ -1,888 +1,789 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antamina · Alerta Temprana</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Sistema de Alerta Temprana · Antamina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ── Tokens ───────────────────────────────────────────────────────────────── */
-:root {
-  --bg:          #0d1117;
-  --surface:     #161b22;
-  --surface-hi:  #1c2230;
-  --border:      #21293a;
-  --border-hi:   #30405a;
-  --text:        #c9d1d9;
-  --text-muted:  #6a7a90;
-  --text-dim:    #3a4a62;
-  --accent:      #d4913a;
-  --accent-bg:   rgba(212,145,58,.10);
-  --accent-line: rgba(212,145,58,.30);
-
-  --c-bajo:      #22c55e;
-  --c-medio:     #f59e0b;
-  --c-alto:      #ef4444;
-  --c-bajo-bg:   rgba(34,197,94,.09);
-  --c-medio-bg:  rgba(245,158,11,.09);
-  --c-alto-bg:   rgba(239,68,68,.09);
-  --c-bajo-line: rgba(34,197,94,.30);
-  --c-medio-line:rgba(245,158,11,.30);
-  --c-alto-line: rgba(239,68,68,.30);
-
-  --z-san:  #5b9cf6;
-  --z-hua:  #a78bfa;
-  --z-arm:  #f87171;
-  --z-for:  #34d399;
-
-  --header-h: 56px;
-  --radius: 8px;
-  --mono: 'SF Mono', Consolas, 'Courier New', monospace;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f0f3f7; --surface: #ffffff; --surface-hi: #f5f7fb;
-    --border: #dce3ee; --border-hi: #b8c6d8;
-    --text: #1c2535; --text-muted: #5a6a80; --text-dim: #b0bccc;
-    --accent: #b06a1e; --accent-bg: rgba(176,106,30,.08); --accent-line: rgba(176,106,30,.25);
-    --c-bajo: #16a34a; --c-medio: #d97706; --c-alto: #dc2626;
-    --z-san: #2563eb; --z-hua: #7c3aed; --z-arm: #dc2626; --z-for: #059669;
-  }
-}
-:root[data-theme="dark"]  { /* same as :root */ }
-:root[data-theme="light"] {
-  --bg: #f0f3f7; --surface: #ffffff; --surface-hi: #f5f7fb;
-  --border: #dce3ee; --border-hi: #b8c6d8;
-  --text: #1c2535; --text-muted: #5a6a80; --text-dim: #b0bccc;
-  --accent: #b06a1e; --accent-bg: rgba(176,106,30,.08); --accent-line: rgba(176,106,30,.25);
-  --c-bajo: #16a34a; --c-medio: #d97706; --c-alto: #dc2626;
-  --z-san: #2563eb; --z-hua: #7c3aed; --z-arm: #dc2626; --z-for: #059669;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  font-size: 14px; line-height: 1.6;
-}
-
-/* ── Header ── */
-.header {
-  position: sticky; top: 0; z-index: 200;
-  height: var(--header-h);
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
-  padding: 0 24px; gap: 16px;
-}
-.header-logo { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-family: var(--mono); }
-.header-title { font-size: 15px; font-weight: 600; color: var(--text); }
-.header-sep { flex: 1; }
-.header-meta { font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-align: right; }
-.header-semana { color: var(--accent); }
-.header-btn {
-  padding: 5px 12px; border: 1px solid var(--border-hi); border-radius: 6px;
-  background: var(--surface-hi); color: var(--text-muted); font-size: 11px; cursor: pointer;
-  font-family: inherit; transition: border-color .15s, color .15s;
-}
-.header-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-/* ── Layout ── */
-.page { max-width: 1280px; margin: 0 auto; padding: 24px 20px 64px; }
-
-/* ── Section titles ── */
-.section-title {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--text-muted);
-  margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
-}
-.section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* ── UGT Cards ── */
-.ugt-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px; margin-bottom: 32px;
-}
-.ugt-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden; cursor: pointer;
-  transition: border-color .15s, transform .10s;
-  position: relative;
-}
-.ugt-card:hover { border-color: var(--border-hi); transform: translateY(-1px); }
-.ugt-card-bar { height: 3px; }
-.ugt-card-body { padding: 16px 16px 14px; }
-.ugt-card-label {
-  font-size: 11px; font-weight: 600; letter-spacing: .05em;
-  text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;
-}
-.ugt-card-prob {
-  font-family: var(--mono); font-size: 36px; font-weight: 700;
-  font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 4px;
-}
-.ugt-card-nivel {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 11px; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
-  margin-bottom: 12px;
-}
-.ugt-card-metrics {
-  display: flex; gap: 14px; padding-top: 10px;
-  border-top: 1px solid var(--border);
-}
-.ugt-metric { display: flex; flex-direction: column; }
-.ugt-metric-n {
-  font-family: var(--mono); font-size: 15px; font-weight: 700;
-  font-variant-numeric: tabular-nums; color: var(--text);
-}
-.ugt-metric-label { font-size: 10px; color: var(--text-muted); }
-.ugt-card-footer {
-  padding: 8px 16px; border-top: 1px solid var(--border);
-  font-size: 11px; color: var(--text-muted);
-  display: flex; align-items: center; gap: 6px;
-}
-.ugt-card-footer .arrow { font-size: 10px; }
-.ugt-card-footer .arrow.up   { color: var(--c-alto); }
-.ugt-card-footer .arrow.down { color: var(--c-bajo); }
-.ugt-card-footer .arrow.flat { color: var(--text-dim); }
-
-/* Nivel colors */
-.nivel-BAJO  { background: var(--c-bajo-bg);  color: var(--c-bajo);  border: 1px solid var(--c-bajo-line); }
-.nivel-MEDIO { background: var(--c-medio-bg); color: var(--c-medio); border: 1px solid var(--c-medio-line); }
-.nivel-ALTO  { background: var(--c-alto-bg);  color: var(--c-alto);  border: 1px solid var(--c-alto-line); }
-
-/* ── Two-column layout for chart + map ── */
-.chart-map-row { display: grid; grid-template-columns: 1fr 400px; gap: 16px; margin-bottom: 32px; }
-@media (max-width: 900px) { .chart-map-row { grid-template-columns: 1fr; } }
-
-/* ── Chart ── */
-.chart-panel {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px;
-}
-.chart-header {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 16px;
-}
-.chart-title { font-size: 13px; font-weight: 600; color: var(--text); }
-.chart-legend { display: flex; flex-wrap: wrap; gap: 12px; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); }
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-#chart-canvas { width: 100%; display: block; }
-
-/* ── Map panel ── */
-.map-panel {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden; position: relative;
-}
-.map-inner { position: relative; width: 100%; }
-.map-inner img { width: 100%; display: block; }
-.map-pin {
-  position: absolute; transform: translate(-50%, -100%);
-  display: flex; flex-direction: column; align-items: center;
-  cursor: pointer; z-index: 10;
-}
-.map-pin-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.7);
-  box-shadow: 0 0 0 3px rgba(0,0,0,.3);
-}
-.map-pin-label {
-  margin-top: 3px; font-size: 9px; font-weight: 600;
-  letter-spacing: .04em; white-space: nowrap;
-  background: rgba(0,0,0,.75); color: #fff;
-  padding: 2px 5px; border-radius: 3px;
-  backdrop-filter: blur(4px);
-}
-.map-pin-prob {
-  font-family: var(--mono); font-size: 9px;
-  color: rgba(255,255,255,.8);
-}
-
-/* ── Bottom panels ── */
-.panels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
-@media (max-width: 760px) { .panels-grid { grid-template-columns: 1fr; } }
-
-.panel {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden;
-}
-.panel-head {
-  padding: 14px 16px 12px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 8px;
-}
-.panel-head-title { font-size: 12px; font-weight: 600; color: var(--text); }
-.panel-head-count { font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-left: auto; }
-.panel-body { padding: 12px 16px; }
-
-/* Calendario entries */
-.cal-entry { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
-.cal-entry:last-child { border-bottom: none; }
-.cal-days { flex-shrink: 0; text-align: right; }
-.cal-days-n { font-family: var(--mono); font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.cal-days-label { font-size: 9px; color: var(--text-muted); white-space: nowrap; }
-.cal-info { flex: 1; min-width: 0; }
-.cal-evento { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.4; }
-.cal-criticidad {
-  display: inline-block; font-size: 9px; font-family: var(--mono);
-  letter-spacing: .06em; text-transform: uppercase; padding: 1px 5px;
-  border-radius: 3px; margin-top: 3px;
-}
-.cal-ugts { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-
-/* Electoral alert */
-.electoral-banner {
-  border-radius: 6px; padding: 12px 14px; margin-bottom: 8px;
-  border: 1px solid var(--border);
-}
-.electoral-phase { font-size: 11px; font-weight: 600; color: var(--text); }
-.electoral-periodo { font-size: 10px; color: var(--text-muted); margin: 2px 0 6px; }
-.electoral-accion { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
-
-/* Calibración */
-.calib-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 0; border-bottom: 1px solid var(--border);
-}
-.calib-row:last-child { border-bottom: none; }
-.calib-nivel-pill {
-  font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px;
-  text-transform: uppercase; width: 60px; text-align: center; flex-shrink: 0;
-}
-.calib-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.calib-bar { height: 100%; border-radius: 3px; }
-.calib-pct { font-family: var(--mono); font-size: 11px; color: var(--text); width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
-.calib-desc { font-size: 10px; color: var(--text-muted); }
-
-/* Actores */
-.actor-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 0; border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.actor-row:last-child { border-bottom: none; }
-.actor-n {
-  font-family: var(--mono); font-size: 10px; color: var(--text-dim);
-  width: 22px; text-align: right; flex-shrink: 0;
-}
-.actor-info { flex: 1; min-width: 0; }
-.actor-nombre { font-size: 12px; font-weight: 600; color: var(--text); }
-.actor-cargo  { font-size: 11px; color: var(--text-muted); }
-.actor-zona-tag {
-  font-size: 9px; font-family: var(--mono); padding: 1px 5px;
-  border-radius: 3px; flex-shrink: 0;
-}
-.actor-ctx {
-  display: none; font-size: 11px; color: var(--text-muted);
-  padding: 6px 0 6px 32px; line-height: 1.45; border-bottom: 1px solid var(--border);
-}
-.actor-ctx.open { display: block; }
-
-/* Eventos históricos */
-.evento-row { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
-.evento-row:last-child { border-bottom: none; }
-.evento-fecha { font-family: var(--mono); font-size: 10px; color: var(--text-muted); white-space: nowrap; margin-top: 2px; }
-.evento-desc { flex: 1; font-size: 12px; color: var(--text); }
-.evento-tipo { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
-
-/* UGT color dots */
-.ugt-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
-
-/* Loading/error */
-.status-msg { text-align: center; padding: 64px 24px; color: var(--text-muted); font-size: 13px; }
-
-/* Wide panel (full row) */
-.panel-full { grid-column: 1 / -1; }
-
-/* Tooltip */
-#tooltip {
-  position: fixed; pointer-events: none; display: none; z-index: 300;
-  background: var(--surface); border: 1px solid var(--border-hi);
-  border-radius: 6px; padding: 8px 12px; font-size: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,.3); max-width: 220px;
-}
-#tooltip .tt-semana { font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
-#tooltip .tt-row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
-#tooltip .tt-name { color: var(--text-muted); }
-#tooltip .tt-val  { font-family: var(--mono); font-weight: 700; font-variant-numeric: tabular-nums; }
+:root{--bg:#eef4fa;--panel:#ffffff;--panel2:#f6fafd;--text:#132430;--sub:#59697a;--muted:#93a0ac;--border:#e3eaf2;--grid:#eaf0f6;--accent:#2b7cc0;--accent-soft:#e7f1fb;--hi:#dc2626;--med:#d97706;--med-alto:#c2410c;--lo:#16a34a;--hi-soft:#fdecec;--med-soft:#fdf3e6;--med-alto-soft:#fce4d6;--lo-soft:#e9f7ef;--shadow:0 1px 2px rgba(20,45,75,.05),0 6px 22px rgba(20,45,75,.055);}
+[data-theme="dark"]{--bg:#0d141b;--panel:#151f29;--panel2:#111a23;--text:#e8eef4;--sub:#9fb0bf;--muted:#647380;--border:#243342;--grid:#1d2833;--accent:#4aa3e0;--accent-soft:#132738;--hi:#f0554d;--med:#e2942f;--med-alto:#f2872f;--lo:#38b06e;--hi-soft:#2a1615;--med-soft:#241a10;--med-alto-soft:#2a1a10;--lo-soft:#122318;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 26px rgba(0,0,0,.35);}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-family:Manrope,system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button,select{font-family:inherit}
+button{outline:none}
+::selection{background:var(--accent-soft)}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.55}70%{transform:scale(2.6);opacity:0}100%{opacity:0}}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <div class="header-logo">ANTAMINA</div>
-  <div class="header-title">Alerta Temprana · Áncash</div>
-  <div class="header-sep"></div>
-  <div class="header-meta">
-    Semana de scoring: <span class="header-semana" id="hdr-semana">—</span><br>
-    Actualizado: <span id="hdr-fecha">—</span>
-  </div>
-  <button class="header-btn" onclick="location.reload()">↻ Actualizar</button>
-</div>
-
-<div id="loading" class="status-msg">Cargando datos…</div>
-<div id="app" class="page" style="display:none"></div>
-
-<div id="tooltip"></div>
-
+<div id="root"></div>
 <script>
-// ── Config ─────────────────────────────────────────────────────────────────────
-const DATA_URL   = 'data/data.json';
-const MAP_URL    = 'data/mapaAntamina.png';
-const MESES_CORTO = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+(function(){
+  "use strict";
 
-const UGT_META = {
-  mina_san_marcos: { label: 'Mina San Marcos', color: '#5b9cf6', mx: 32.0, my: 14.0 },
-  huallanca:       { label: 'Huallanca',        color: '#a78bfa', mx: 67.0, my: 27.0 },
-  huarmey:         { label: 'Huarmey',           color: '#f87171', mx: 25.0, my: 41.0 },
-  valle_fortaleza: { label: 'Valle Fortaleza',   color: '#34d399', mx: 53.0, my: 56.0 },
-};
+  var ZONA_COLORS = {mina_san_marcos:'#2f6fd6',huallanca:'#7c5cd6',huarmey:'#d64545',valle_fortaleza:'#0f9d6e'};
 
-const NIVEL_COLOR = { BAJO: '#22c55e', MEDIO: '#f59e0b', ALTO: '#ef4444' };
-const NIVEL_SOFT  = { BAJO: 'rgba(34,197,94,.09)', MEDIO: 'rgba(245,158,11,.09)', ALTO: 'rgba(239,68,68,.09)' };
-const NIVEL_LINE  = { BAJO: 'rgba(34,197,94,.3)', MEDIO: 'rgba(245,158,11,.3)', ALTO: 'rgba(239,68,68,.3)' };
+  var SOURCES = [
+    {name:'Defensoría del Pueblo',desc:'Escalamiento de conflictos sociales reportados'},
+    {name:'OEFA',desc:'Denuncias ambientales por zona'},
+    {name:'INEI',desc:'Indicadores socioeconómicos y de pobreza'},
+    {name:'Monitoreo de medios',desc:'Volumen y tono de noticias locales/regionales'},
+    {name:'Calendario cívico-electoral',desc:'Fechas críticas, festividades y proceso electoral 2026'}
+  ];
 
-function fmtPct(v) { return v === null || v === undefined ? '—' : `${Math.round(v * 100)}%`; }
-function fmtFecha(s) {
-  if (!s) return '—';
-  const [y, m, d] = s.split('-');
-  return `${parseInt(d)} ${MESES_CORTO[parseInt(m)-1]} ${y}`;
-}
-function levelColor(n) { return NIVEL_COLOR[n] || '#94a3b8'; }
-function levelSoft(n)  { return NIVEL_SOFT[n]  || 'rgba(148,163,184,.06)'; }
-function levelLine(n)  { return NIVEL_LINE[n]   || 'rgba(148,163,184,.2)'; }
-function ugtColor(id)  { return (UGT_META[id] || {}).color || '#94a3b8'; }
-function ugtLabel(id)  { return (UGT_META[id] || {}).label || id; }
-
-function tendenciaArrow(delta) {
-  if (delta === null || delta === undefined) return {cls:'flat', sym:'→'};
-  if (delta >  0.02) return {cls:'up',   sym:'↑'};
-  if (delta < -0.02) return {cls:'down', sym:'↓'};
-  return {cls:'flat', sym:'→'};
-}
-
-function criticidadStyle(c) {
-  const map = { 'CRÍTICA': 'background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.3)',
-                'ALTA':    'background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.3)',
-                'MEDIA':   'background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.3)' };
-  return map[c] || 'background:rgba(148,163,184,.1);color:#94a3b8';
-}
-
-// ── Smooth path (Catmull-Rom → Bezier cúbico) ─────────────────────────────────
-function smoothPath(pts) {
-  if (pts.length < 2) return '';
-  const n = pts.length;
-  let d = `M ${pts[0].x} ${pts[0].y}`;
-  for (let i = 0; i < n - 1; i++) {
-    const p0 = pts[Math.max(0, i-1)];
-    const p1 = pts[i];
-    const p2 = pts[i+1];
-    const p3 = pts[Math.min(n-1, i+2)];
-    const t = 0.35;
-    const cp1x = p1.x + t * (p2.x - p0.x) / 2;
-    const cp1y = p1.y + t * (p2.y - p0.y) / 2;
-    const cp2x = p2.x - t * (p3.x - p1.x) / 2;
-    const cp2y = p2.y - t * (p3.y - p1.y) / 2;
-    d += ` C ${cp1x.toFixed(2)} ${cp1y.toFixed(2)}, ${cp2x.toFixed(2)} ${cp2y.toFixed(2)}, ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
-  }
-  return d;
-}
-
-// ── Draw chart ─────────────────────────────────────────────────────────────────
-function drawChart(serie) {
-  const canvas = document.getElementById('chart-canvas');
-  if (!canvas) return;
-
-  const isDark = !document.documentElement.dataset.theme || document.documentElement.dataset.theme === 'dark' ||
-    (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches &&
-     document.documentElement.dataset.theme !== 'light');
-
-  const gridColor = isDark ? 'rgba(255,255,255,.04)' : 'rgba(0,0,0,.05)';
-  const textColor = isDark ? '#4a5a72' : '#94a3b8';
-  const labelColor = isDark ? '#6a7a90' : '#64748b';
-
-  const W = canvas.clientWidth || 600;
-  const H = 220;
-  canvas.setAttribute('width', W);
-  canvas.setAttribute('height', H);
-  const ctx = canvas.getContext('2d');
-
-  const PAD = { top: 16, right: 16, bottom: 32, left: 40 };
-  const plotW = W - PAD.left - PAD.right;
-  const plotH = H - PAD.top - PAD.bottom;
-
-  ctx.clearRect(0, 0, W, H);
-
-  // Group by UGT
-  const byUgt = {};
-  for (const p of serie) {
-    if (!byUgt[p.ugt]) byUgt[p.ugt] = [];
-    byUgt[p.ugt].push(p);
-  }
-
-  // Determine x range
-  const allSemanas = serie.map(p => p.semana).sort();
-  if (allSemanas.length === 0) return;
-  const minS = allSemanas[0], maxS = allSemanas[allSemanas.length - 1];
-  const minT = new Date(minS).getTime(), maxT = new Date(maxS).getTime();
-  const rangeT = maxT - minT || 1;
-
-  const xOf = semana => PAD.left + ((new Date(semana).getTime() - minT) / rangeT) * plotW;
-  const yOf = prob => PAD.top + (1 - prob) * plotH;
-
-  // Grid lines (0%, 44%, 80%, 100%)
-  const gridLines = [0, 0.44, 0.80, 1.0];
-  ctx.font = `9px monospace`;
-  ctx.textAlign = 'right';
-  for (const pct of gridLines) {
-    const y = yOf(pct);
-    ctx.strokeStyle = gridColor;
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W - PAD.right, y); ctx.stroke();
-    ctx.fillStyle = textColor;
-    ctx.fillText(`${Math.round(pct * 100)}%`, PAD.left - 4, y + 3);
-  }
-
-  // X-axis labels (months)
-  ctx.textAlign = 'center';
-  ctx.fillStyle = textColor;
-  const months = new Set();
-  for (const s of allSemanas) {
-    const d = new Date(s);
-    const key = `${d.getFullYear()}-${d.getMonth()}`;
-    if (!months.has(key) && d.getDate() <= 7) {
-      months.add(key);
-      const x = xOf(s);
-      ctx.fillText(`${MESES_CORTO[d.getMonth()]} ${d.getFullYear().toString().slice(2)}`, x, H - 6);
+  /* ---------- helpers ---------- */
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function smoothPath(coords){
+    // Curva Catmull-Rom -> Bezier cubica (tension 1/6). Cada punto real sigue
+    // siendo un ancla exacta del path (mismo valor, misma posicion) -- esto
+    // solo cambia como se conectan visualmente los puntos (curvo en vez de
+    // segmentos rectos), no suaviza ni altera ningun dato.
+    if(coords.length<2) return '';
+    if(coords.length===2) return 'M'+coords[0][0]+' '+coords[0][1]+' L'+coords[1][0]+' '+coords[1][1];
+    var d='M'+coords[0][0]+' '+coords[0][1]+' ';
+    for(var i=0;i<coords.length-1;i++){
+      var p0=coords[i-1]||coords[i];
+      var p1=coords[i];
+      var p2=coords[i+1];
+      var p3=coords[i+2]||p2;
+      var c1x=p1[0]+(p2[0]-p0[0])/6, c1y=p1[1]+(p2[1]-p0[1])/6;
+      var c2x=p2[0]-(p3[0]-p1[0])/6, c2y=p2[1]-(p3[1]-p1[1])/6;
+      d+='C'+c1x+' '+c1y+','+c2x+' '+c2y+','+p2[0]+' '+p2[1]+' ';
     }
+    return d;
   }
-
-  // Level threshold zones
-  ctx.fillStyle = 'rgba(239,68,68,.04)';
-  ctx.fillRect(PAD.left, yOf(1.0), plotW, yOf(0.80) - yOf(1.0));
-  ctx.fillStyle = 'rgba(245,158,11,.04)';
-  ctx.fillRect(PAD.left, yOf(0.80), plotW, yOf(0.44) - yOf(0.80));
-
-  // Lines per UGT
-  for (const [ugt, pts] of Object.entries(byUgt)) {
-    const meta = UGT_META[ugt] || {};
-    const color = meta.color || '#94a3b8';
-
-    const valid = pts.filter(p => p.prob_suavizado !== null && p.prob_suavizado !== undefined);
-    if (valid.length < 2) continue;
-    valid.sort((a, b) => a.semana.localeCompare(b.semana));
-
-    const mapped = valid.map(p => ({ x: xOf(p.semana), y: yOf(p.prob_suavizado), p }));
-
-    // Area fill
-    const pathStr = smoothPath(mapped);
-    const path = new Path2D(pathStr + ` L ${mapped[mapped.length-1].x} ${yOf(0)} L ${mapped[0].x} ${yOf(0)} Z`);
-    ctx.fillStyle = color.replace(')', ', .08)').replace('rgb(', 'rgba(');
-    if (color.startsWith('#')) {
-      const r = parseInt(color.slice(1,3),16), g = parseInt(color.slice(3,5),16), b = parseInt(color.slice(5,7),16);
-      ctx.fillStyle = `rgba(${r},${g},${b},0.06)`;
+  function fmtPct(v){return v==null?'—':Math.round(v*100)+'%';}
+  function levelColor(l){
+    if(l==='ALTO') return 'var(--hi)';
+    if(l==='MEDIO') return 'var(--med)';
+    if(l==='BAJO') return 'var(--lo)';
+    return 'var(--muted)';
+  }
+  function levelSoft(l){
+    if(l==='ALTO') return 'var(--hi-soft)';
+    if(l==='MEDIO') return 'var(--med-soft)';
+    if(l==='BAJO') return 'var(--lo-soft)';
+    return 'var(--panel2)';
+  }
+  function zonaColor(id){ return ZONA_COLORS[id] || 'var(--muted)'; }
+  function zonaLabel(z){ return (z && z.label) ? z.label : (z ? z.ugt : ''); }
+  function explicacionNivel(z){
+    var factores=[];
+    if(z.racha_semanas_protesta!=null && z.racha_semanas_protesta>0){
+      factores.push('una racha activa de protestas ('+z.racha_semanas_protesta+' semana'+(z.racha_semanas_protesta>1?'s':'')+')');
     }
-    ctx.fill(path);
-
-    // Line
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
-    const linePath = new Path2D(pathStr);
-    ctx.stroke(linePath);
-
-    // OOF vs live distinction (dashed for OOF)
-    const oofPts = valid.filter(p => p.origen === 'oof_backfill');
-    if (oofPts.length > 1) {
-      const oofMapped = oofPts.map(p => ({ x: xOf(p.semana), y: yOf(p.prob_suavizado), p }));
-      ctx.strokeStyle = color.replace('rgb(', 'rgba(').replace(')', ', .45)');
-      if (color.startsWith('#')) {
-        const r = parseInt(color.slice(1,3),16), g = parseInt(color.slice(3,5),16), b = parseInt(color.slice(5,7),16);
-        ctx.strokeStyle = `rgba(${r},${g},${b},0.45)`;
-      }
-      ctx.setLineDash([3, 4]);
-      ctx.lineWidth = 1.5;
-      const oofPath = new Path2D(smoothPath(oofMapped));
-      ctx.stroke(oofPath);
-      ctx.setLineDash([]);
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = color;
+    if(z.dias_desde_ultima_protesta!=null){
+      if(z.dias_desde_ultima_protesta<=14) factores.push('una protesta reciente (hace '+z.dias_desde_ultima_protesta+' días)');
+      else if(z.dias_desde_ultima_protesta>90) factores.push('ausencia de protestas en los últimos '+z.dias_desde_ultima_protesta+' días');
     }
-
-    // Endpoint dot
-    const last = mapped[mapped.length - 1];
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.arc(last.x, last.y, 4, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = isDark ? '#161b22' : '#ffffff';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-  }
-
-  // ── Tooltip interaction ──
-  canvas._serie = serie;
-  canvas._xOf = xOf;
-  canvas._yOf = yOf;
-  canvas._allSemanas = allSemanas;
-  canvas._byUgt = byUgt;
-  canvas._PAD = PAD;
-  canvas._plotW = plotW;
-}
-
-function setupChartTooltip() {
-  const canvas = document.getElementById('chart-canvas');
-  const tt = document.getElementById('tooltip');
-  if (!canvas || !tt) return;
-  canvas.addEventListener('mousemove', e => {
-    const serie = canvas._serie, xOf = canvas._xOf, allSemanas = canvas._allSemanas;
-    const byUgt = canvas._byUgt, PAD = canvas._PAD, plotW = canvas._plotW;
-    if (!serie) return;
-    const rect = canvas.getBoundingClientRect();
-    const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
-    // Find nearest semana
-    let nearestSemana = null, nearestDx = Infinity;
-    for (const s of allSemanas) {
-      const dx = Math.abs(xOf(s) - mx);
-      if (dx < nearestDx) { nearestDx = dx; nearestSemana = s; }
-    }
-    if (nearestDx > 20 || !nearestSemana) { tt.style.display = 'none'; return; }
-    const byS = {};
-    for (const p of serie) {
-      if (p.semana === nearestSemana) byS[p.ugt] = p;
-    }
-    let html = `<div class="tt-semana">${fmtFecha(nearestSemana)}</div>`;
-    for (const [ugt, meta] of Object.entries(UGT_META)) {
-      const p = byS[ugt];
-      if (!p) continue;
-      const pct = p.prob !== null ? Math.round(p.prob * 100) : null;
-      const nc = pct !== null ? (pct >= 80 ? 'ALTO' : pct >= 44 ? 'MEDIO' : 'BAJO') : null;
-      html += `<div class="tt-row">
-        <span class="tt-name" style="color:${meta.color}">● ${meta.label}</span>
-        <span class="tt-val" style="color:${nc ? levelColor(nc) : '#94a3b8'}">${pct !== null ? pct+'%' : '—'}</span>
-      </div>`;
-    }
-    tt.innerHTML = html;
-    tt.style.display = 'block';
-    const tx = Math.min(e.clientX + 12, window.innerWidth - 240);
-    const ty = Math.max(e.clientY - 60, 8);
-    tt.style.left = tx + 'px';
-    tt.style.top  = ty + 'px';
-  });
-  canvas.addEventListener('mouseleave', () => { tt.style.display = 'none'; });
-}
-
-// ── Render ─────────────────────────────────────────────────────────────────────
-function render(data) {
-  document.getElementById('loading').style.display = 'none';
-  const app = document.getElementById('app');
-  app.style.display = '';
-
-  // Header meta
-  document.getElementById('hdr-semana').textContent = data.meta.semana_mas_reciente || '—';
-  document.getElementById('hdr-fecha').textContent = data.meta.generado_en
-    ? data.meta.generado_en.replace('T', ' ').replace('Z', ' UTC').slice(0,19) + ' UTC' : '—';
-
-  // Build HTML
-  app.innerHTML = renderUgtCards(data.zonas)
-                + renderChartAndMap(data)
-                + renderBottomPanels(data);
-
-  // Setup interactivity
-  requestAnimationFrame(() => {
-    drawChart(data.serie_tiempo || []);
-    setupChartTooltip();
-    setupActores();
-    setupMap(data.zonas);
-  });
-}
-
-// ── UGT Cards ──────────────────────────────────────────────────────────────────
-function renderUgtCards(zonas) {
-  let html = '<div class="section-title">Predicción semanal · próximos 30 días</div>';
-  html += '<div class="ugt-grid">';
-  for (const z of zonas) {
-    const prob = z.prob_actual;
-    const nivel = z.nivel_riesgo || (prob != null ? (prob >= 0.80 ? 'ALTO' : prob >= 0.44 ? 'MEDIO' : 'BAJO') : null);
-    const pct = prob != null ? Math.round(prob * 100) : null;
-    const color = ugtColor(z.ugt);
-    const nc = nivel ? levelColor(nivel) : '#94a3b8';
-    const arr = tendenciaArrow(z.tendencia_delta);
-    const n1w = z.n_eventos_1w != null ? z.n_eventos_1w : '—';
-    const n4w = z.n_eventos_4w != null ? z.n_eventos_4w : '—';
-    const dias = z.dias_desde_ultima_protesta != null ? z.dias_desde_ultima_protesta : '—';
-    const pfc = z.proxima_fecha_critica;
-
-    html += `<div class="ugt-card" onclick="scrollToUgt('${z.ugt}')">
-      <div class="ugt-card-bar" style="background:${color}"></div>
-      <div class="ugt-card-body">
-        <div class="ugt-card-label">${ugtLabel(z.ugt)}</div>
-        <div class="ugt-card-prob" style="color:${nc}">${pct != null ? pct + '%' : '—'}</div>
-        <div class="ugt-card-nivel nivel-${nivel || 'BAJO'}">${nivel || '—'}</div>
-        <div class="ugt-card-metrics">
-          <div class="ugt-metric">
-            <span class="ugt-metric-n">${n1w}</span>
-            <span class="ugt-metric-label">eventos 1s</span>
-          </div>
-          <div class="ugt-metric">
-            <span class="ugt-metric-n">${n4w}</span>
-            <span class="ugt-metric-label">eventos 4s</span>
-          </div>
-          <div class="ugt-metric">
-            <span class="ugt-metric-n">${dias}</span>
-            <span class="ugt-metric-label">días sin prot.</span>
-          </div>
-        </div>
-      </div>
-      <div class="ugt-card-footer">
-        <span class="arrow ${arr.cls}">${arr.sym}</span>
-        ${pfc ? `Próx.: <strong>${pfc.evento ? pfc.evento.slice(0,40) + (pfc.evento.length > 40 ? '…' : '') : pfc.fecha}</strong>` : 'Sin fecha crítica próxima'}
-      </div>
-    </div>`;
-  }
-  return html + '</div>';
-}
-
-// ── Chart + Map ────────────────────────────────────────────────────────────────
-function renderChartAndMap(data) {
-  let legendHtml = '';
-  for (const [id, meta] of Object.entries(UGT_META)) {
-    legendHtml += `<div class="legend-item"><div class="legend-dot" style="background:${meta.color}"></div>${meta.label}</div>`;
-  }
-  legendHtml += `<div class="legend-item" style="gap:6px">
-    <svg width="20" height="10"><line x1="0" y1="5" x2="20" y2="5" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,4"/></svg>
-    Predicción OOF (histórico)
-  </div>`;
-
-  return `<div class="chart-map-row">
-    <div class="chart-panel" id="chart-panel">
-      <div class="chart-header">
-        <div>
-          <div class="chart-title">Probabilidad de protesta — horizonte 30 días</div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:2px">Áncash · UGT × semana · modelo LR calibrado</div>
-        </div>
-        <div class="chart-legend">${legendHtml}</div>
-      </div>
-      <canvas id="chart-canvas" height="220"></canvas>
-    </div>
-    <div class="map-panel">
-      <div class="map-inner" id="map-inner">
-        <img src="${MAP_URL}" alt="Mapa Áncash — UGTs Antamina" onerror="this.style.display='none';document.getElementById('map-fallback').style.display='block'">
-        <div id="map-fallback" style="display:none;padding:40px;text-align:center;color:var(--text-muted);font-size:12px">
-          Colocar imagen en <code>data/mapaAntamina.png</code>
-        </div>
-        <div id="map-pins"></div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function setupMap(zonas) {
-  const pinsDiv = document.getElementById('map-pins');
-  if (!pinsDiv) return;
-  const img = pinsDiv.previousElementSibling.tagName === 'IMG'
-    ? pinsDiv.previousElementSibling : null;
-  for (const z of zonas) {
-    const meta = UGT_META[z.ugt];
-    if (!meta) continue;
-    const prob = z.prob_actual;
-    const pct = prob != null ? Math.round(prob * 100) : null;
-    const pin = document.createElement('div');
-    pin.className = 'map-pin';
-    pin.style.left = meta.mx + '%';
-    pin.style.top  = meta.my + '%';
-    pin.innerHTML = `<div class="map-pin-dot" style="background:${meta.color}"></div>
-      <div class="map-pin-label">${meta.label}</div>
-      ${pct != null ? `<div class="map-pin-prob">${pct}%</div>` : ''}`;
-    pinsDiv.appendChild(pin);
-  }
-}
-
-// ── Bottom panels ──────────────────────────────────────────────────────────────
-function renderBottomPanels(data) {
-  return `<div class="panels-grid">
-    ${renderCalendario(data.calendario_fechas_criticas)}
-    ${renderElectorales(data)}
-    ${renderCalibracion(data.calibracion_modelo)}
-    ${renderActores(data.actores_criticos)}
-    ${renderEventos(data.eventos_historicos)}
-  </div>`;
-}
-
-function renderCalendario(cal) {
-  if (!cal || !cal.length) return '<div class="panel"><div class="panel-head"><div class="panel-head-title">Calendario de criticidad</div></div><div class="panel-body" style="color:var(--text-muted);font-size:12px">Sin eventos próximos</div></div>';
-  const upcoming = cal.slice(0, 8);
-  let rows = '';
-  for (const e of upcoming) {
-    const dias = e.dias_restantes;
-    const dayStyle = dias <= 14 ? `color:${levelColor('ALTO')}` : dias <= 60 ? `color:${levelColor('MEDIO')}` : `color:var(--c-bajo)`;
-    const ugtLabels = (e.ugts || []).map(u => ugtLabel(u)).join(', ');
-    rows += `<div class="cal-entry">
-      <div class="cal-days">
-        <div class="cal-days-n" style="${dayStyle}">${dias}</div>
-        <div class="cal-days-label">días</div>
-      </div>
-      <div class="cal-info">
-        <div class="cal-evento">${e.evento || '—'}</div>
-        <span class="cal-criticidad" style="${criticidadStyle(e.criticidad)}">${e.criticidad || ''}</span>
-        <div class="cal-ugts">${ugtLabels || 'Todas las UGTs'} · ${e.fecha ? fmtFecha(e.fecha) : ''}</div>
-      </div>
-    </div>`;
-  }
-  return `<div class="panel">
-    <div class="panel-head">
-      <div class="panel-head-title">⏱ Fechas críticas próximas</div>
-      <div class="panel-head-count">${cal.length} eventos</div>
-    </div>
-    <div class="panel-body">${rows}</div>
-  </div>`;
-}
-
-function renderElectorales(data) {
-  const alertas = {};
-  for (const z of (data.zonas || [])) {
-    if (z.alerta_electoral) alertas[z.ugt] = z.alerta_electoral;
-  }
-  const entries = Object.entries(alertas);
-  if (!entries.length) return `<div class="panel">
-    <div class="panel-head"><div class="panel-head-title">⚡ Alertas ERM 2026</div></div>
-    <div class="panel-body" style="color:var(--text-muted);font-size:12px">Sin fase electoral activa esta semana</div>
-  </div>`;
-  let html = '';
-  const seen = new Set();
-  for (const [ugt, alerta] of entries) {
-    const key = alerta.fase + alerta.periodo;
-    if (seen.has(key)) { continue; }
-    seen.add(key);
-    const riesgoColor = alerta.riesgo && alerta.riesgo.toLowerCase().includes('alto') ? levelColor('ALTO')
-      : alerta.riesgo && alerta.riesgo.toLowerCase().includes('medio') ? levelColor('MEDIO') : levelColor('BAJO');
-    html += `<div class="electoral-banner" style="border-left:3px solid ${riesgoColor}">
-      <div class="electoral-phase">${alerta.fase || '—'} <span style="color:${riesgoColor};font-size:10px;margin-left:6px">● ${alerta.riesgo || ''}</span></div>
-      <div class="electoral-periodo">${alerta.periodo || ''}</div>
-      <div class="electoral-accion">${alerta.accion_recomendada || ''}</div>
-    </div>`;
-  }
-  return `<div class="panel">
-    <div class="panel-head"><div class="panel-head-title">⚡ Alertas ERM 2026</div></div>
-    <div class="panel-body">${html}</div>
-  </div>`;
-}
-
-function renderCalibracion(calib) {
-  if (!calib || !calib.length) return '<div class="panel"><div class="panel-head"><div class="panel-head-title">Calibración del modelo</div></div><div class="panel-body" style="color:var(--text-muted);font-size:12px">Sin datos</div></div>';
-  let rows = '';
-  const total = calib.reduce((s, r) => s + (r.n || 0), 0);
-  for (const r of calib) {
-    const pct = r.tasa_acierto != null ? Math.round(r.tasa_acierto * 100) : null;
-    const barW = pct != null ? pct : 0;
-    rows += `<div class="calib-row">
-      <div class="calib-nivel-pill nivel-${r.nivel}">${r.nivel}</div>
-      <div class="calib-bar-wrap">
-        <div class="calib-bar" style="width:${barW}%;background:${levelColor(r.nivel)}"></div>
-      </div>
-      <div class="calib-pct">${pct != null ? pct + '%' : '—'}</div>
-      <div style="color:var(--text-muted);font-size:10px;min-width:60px">n=${r.n || 0} · recall ${r.recall != null ? Math.round(r.recall*100)+'%' : '—'}</div>
-    </div>
-    <div style="font-size:10px;color:var(--text-dim);padding:2px 0 6px 68px">${r.descripcion || ''}</div>`;
-  }
-  return `<div class="panel">
-    <div class="panel-head">
-      <div class="panel-head-title">📊 Calibración del modelo</div>
-      <div class="panel-head-count">LR · y_30 · ${total} predicciones OOF</div>
-    </div>
-    <div class="panel-body">${rows}</div>
-  </div>`;
-}
-
-function renderActores(actores) {
-  if (!actores || !actores.length) return '<div class="panel"><div class="panel-head"><div class="panel-head-title">Actores críticos</div></div><div class="panel-body" style="color:var(--text-muted);font-size:12px">Sin datos</div></div>';
-  const top = actores.slice(0, 15);
-  let rows = '';
-  for (let i = 0; i < top.length; i++) {
-    const a = top[i];
-    const zona = a.distrito_o_zona || '';
-    let zColor = '#94a3b8';
-    for (const [id, meta] of Object.entries(UGT_META)) {
-      if (zona.toLowerCase().includes(id.replace(/_/g,' ').split(' ')[0]) || zona.includes(meta.label.split(' ')[0])) {
-        zColor = meta.color; break;
+    if(z.proxima_fecha_critica && z.proxima_fecha_critica.fecha && z.semana){
+      var horizonMs=parseYMD(z.semana)+HORIZON_DAYS*DAY_MS;
+      if(parseYMD(z.proxima_fecha_critica.fecha)<=horizonMs){
+        factores.push('una fecha crítica próxima ('+z.proxima_fecha_critica.evento+', '+z.proxima_fecha_critica.fecha+')');
       }
     }
-    if (zona.toLowerCase().includes('huarmey')) zColor = UGT_META.huarmey.color;
-    if (zona.toLowerCase().includes('huallanca')) zColor = UGT_META.huallanca.color;
-    if (zona.toLowerCase().includes('fortaleza') || zona.toLowerCase().includes('huaraz')) zColor = UGT_META.valle_fortaleza.color;
-    if (zona.toLowerCase().includes('san marcos') || zona.toLowerCase().includes('mina')) zColor = UGT_META.mina_san_marcos.color;
-
-    rows += `<div class="actor-row" onclick="toggleCtx(${i})">
-      <div class="actor-n">${a.n_apariciones}×</div>
-      <div class="actor-info">
-        <div class="actor-nombre">${a.nombre}</div>
-        <div class="actor-cargo">${a.cargo_o_rol || '—'}</div>
-      </div>
-      <div class="actor-zona-tag" style="background:${zColor}22;color:${zColor};border:1px solid ${zColor}44">${zona.split(',')[0].trim()}</div>
-    </div>
-    <div class="actor-ctx" id="actor-ctx-${i}">${a.contexto_resumen || ''}</div>`;
+    if(z.n_eventos_4w!=null && z.n_eventos_4w>=3){
+      factores.push(z.n_eventos_4w+' eventos registrados en las últimas 4 semanas');
+    }
+    if(!factores.length) return null;
+    return 'Este nivel se explica principalmente por '+factores.slice(0,3).join(', ')+'.';
   }
-  return `<div class="panel">
-    <div class="panel-head">
-      <div class="panel-head-title">👤 Actores críticos</div>
-      <div class="panel-head-count">${actores.length} actores · clic para contexto</div>
-    </div>
-    <div class="panel-body">${rows}</div>
-  </div>`;
-}
-
-function renderEventos(eventos) {
-  if (!eventos || !eventos.length) return '<div class="panel"><div class="panel-head"><div class="panel-head-title">Eventos históricos</div></div><div class="panel-body" style="color:var(--text-muted);font-size:12px">Sin datos</div></div>';
-  const top = eventos.slice(0, 12);
-  let rows = '';
-  for (const e of top) {
-    const color = ugtColor(e.ugt);
-    rows += `<div class="evento-row">
-      <div class="evento-fecha">${fmtFecha(e.fecha)}</div>
-      <div>
-        <div class="evento-desc">
-          <span class="ugt-dot" style="background:${color}"></span> ${e.evento || '—'}
-        </div>
-        <div class="evento-tipo">${e.tipo || ''} ${e.severidad ? '· ' + e.severidad : ''}${e.fuente_url ? ` · <a href="${e.fuente_url}" target="_blank" style="color:var(--accent)">fuente</a>` : ''}</div>
-      </div>
-    </div>`;
+  var DAY_MS = 86400000;
+  var HORIZON_DAYS = 30; // prob en serie_tiempo ya es P(protesta <= 30 dias) desde el cierre de esa semana
+  function parseYMD(s){ var p=s.split('-').map(Number); return Date.UTC(p[0],p[1]-1,p[2]); }
+  function fmtDateISO(ms){ var d=new Date(ms); function p2(n){return n<10?'0'+n:''+n;} return d.getUTCFullYear()+'-'+p2(d.getUTCMonth()+1)+'-'+p2(d.getUTCDate()); }
+  var MES_NOMBRES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  function fmtDayMonth(ms,withYear){ var d=new Date(ms); return d.getUTCDate()+' '+MES_NOMBRES[d.getUTCMonth()]+(withYear?(' '+d.getUTCFullYear()):''); }
+  function fmtDayMonthPadded(ms){ var d=new Date(ms); function p2(n){return n<10?'0'+n:''+n;} return p2(d.getUTCDate())+' '+MES_NOMBRES[d.getUTCMonth()]; }
+  function smoothSeries(pts,window){
+    var half=Math.floor(window/2);
+    return pts.map(function(p,i){
+      var lo=Math.max(0,i-half), hi=Math.min(pts.length-1,i+half), sum=0,count=0;
+      for(var j=lo;j<=hi;j++){ sum+=pts[j].probDisplay; count++; }
+      return {ms:p.ms, prob:p.prob, probDisplay:sum/count};
+    });
   }
-  return `<div class="panel panel-full">
-    <div class="panel-head">
-      <div class="panel-head-title">📋 Historial de eventos</div>
-      <div class="panel-head-count">${eventos.length} registros · más recientes primero</div>
-    </div>
-    <div class="panel-body">${rows}</div>
-  </div>`;
-}
+  function keyOfMonth(ms){ var d=new Date(ms); return d.getUTCFullYear()+'-'+(d.getUTCMonth()+1<10?'0':'')+(d.getUTCMonth()+1); }
+  function monthLabel(key){ var p=key.split('-'); return MES_NOMBRES[+p[1]-1]+' '+p[0]; }
+  function shiftMonth(key,n){ var p=key.split('-'); var y=+p[0], m=+p[1]-1+n; while(m<0){m+=12;y--;} while(m>11){m-=12;y++;} return y+'-'+(m+1<10?'0':'')+(m+1); }
+  function maxKey(a,b){ return a>b?a:b; }
+  function lastDayOfMonth(key){ var p=key.split('-'); var y=+p[0], m=+p[1]-1; return Date.UTC(y,m+1,0); }
+  function monthOptsRange(fromKey,toKey){ var out=[],k=fromKey,guard=0; while(k<=toKey&&guard<600){ out.push({v:k,label:monthLabel(k)}); k=shiftMonth(k,1); guard++; } return out; }
 
-// ── Interactivity ──────────────────────────────────────────────────────────────
-function toggleCtx(i) {
-  const el = document.getElementById(`actor-ctx-${i}`);
-  if (el) el.classList.toggle('open');
-}
-function setupActores() { /* rows are already wired */ }
-function scrollToUgt(id) {
-  const panel = document.getElementById('chart-panel');
-  if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+  /* ---------- state ---------- */
+  var state = {
+    dark:false,
+    hidden:{}, hover:null, hoverForecast:false, hoverPin:null, selected:null,
+    gran:'week', fromVal:null, toVal:null,
+    data:null, loadError:null
+  };
 
-// ── Bootstrap ──────────────────────────────────────────────────────────────────
-fetch(DATA_URL)
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(render)
-  .catch(err => {
-    document.getElementById('loading').innerHTML =
-      `<div style="color:var(--c-alto)">Error al cargar datos: ${err.message}<br>
-      <small style="color:var(--text-muted)">Asegúrate de que <code>data/data.json</code> existe y fue generado por <code>export_sheet_antamina.py</code></small></div>`;
+  /* ---------- chart geometry constants ---------- */
+  var MAIN = {cw:960,ch:340,padL:42,padR:18,padT:18,padB:46};
+
+  /* ---------- derived data helpers ---------- */
+  function todasZonas(){ return state.data.zonas||[]; }
+  function serieByZona(){
+    var out={};
+    (state.data.serie_tiempo||[]).forEach(function(p){
+      (out[p.ugt]=out[p.ugt]||[]).push(p);
+    });
+    Object.keys(out).forEach(function(k){ out[k].sort(function(a,b){return a.semana<b.semana?-1:1;}); });
+    return out;
+  }
+  function proximasFechasCriticas(){
+    var list=(state.data.calendario_fechas_criticas||[]).slice();
+    list.sort(function(a,b){ return (a.fecha||a.fecha_periodo||'')<(b.fecha||b.fecha_periodo||'')?-1:1; });
+    return list;
+  }
+  function criticidadColor(c){
+    if(c==='ALTO') return 'var(--hi)';
+    if(c==='MEDIO-ALTO') return 'var(--med-alto)';
+    if(c==='MEDIO') return 'var(--med)';
+    return 'var(--muted)';
+  }
+  function realBounds(){
+    var zonas=todasZonas();
+    var trueByZona=serieByZona();
+    var allMs=[];
+    zonas.forEach(function(z){ (trueByZona[z.ugt]||[]).forEach(function(p){ allMs.push(parseYMD(p.semana)); }); });
+    if(!allMs.length) return null;
+    var trueMinMs=Math.min.apply(null,allMs);
+    var trueMaxMs=Math.max.apply(null,allMs);
+    var lastEnds=[];
+    zonas.forEach(function(z){
+      var pts=(trueByZona[z.ugt]||[]);
+      if(pts.length) lastEnds.push(parseYMD(pts[pts.length-1].semana)+HORIZON_DAYS*DAY_MS);
+    });
+    var horizonEndMs=Math.max.apply(null, lastEnds.concat([trueMinMs+DAY_MS]));
+    return {trueByZona:trueByZona, trueMinMs:trueMinMs, trueMaxMs:trueMaxMs, horizonEndMs:horizonEndMs};
+  }
+  function ensureDefaultRange(rb){
+    if(!rb || (state.fromVal && state.toVal)) return;
+    var earliestKey=keyOfMonth(rb.trueMinMs);
+    var horizonKey=keyOfMonth(rb.horizonEndMs);
+    if(!state.fromVal) state.fromVal=earliestKey; // mostrar todo el histórico disponible por defecto
+    if(!state.toVal) state.toVal=horizonKey;
+  }
+  function displaySeries(gran){
+    var trueByZona=serieByZona();
+    if(gran!=='month') return trueByZona;
+    var out={};
+    Object.keys(trueByZona).forEach(function(zid){
+      var groups={};
+      trueByZona[zid].forEach(function(p){
+        var k=keyOfMonth(parseYMD(p.semana));
+        if(!groups[k]) groups[k]={sum:0,count:0};
+        groups[k].sum+=p.prob; groups[k].count++;
+      });
+      out[zid]=Object.keys(groups).sort().map(function(k){ return {semana:k+'-15', prob:groups[k].sum/groups[k].count}; });
+    });
+    return out;
+  }
+  function mainChartDomain(){
+    var rb=realBounds();
+    if(!rb) return null;
+    ensureDefaultRange(rb);
+    var zonas=todasZonas();
+    var fromMs=parseYMD(state.fromVal+'-01');
+    var toEndMs=lastDayOfMonth(state.toVal);
+    var disp=displaySeries(state.gran);
+    var byZona={};
+    zonas.forEach(function(z){
+      byZona[z.ugt]=(disp[z.ugt]||[]).map(function(p){return {ms:parseYMD(p.semana),prob:p.prob,probDisplay:(p.prob_suavizado!=null?p.prob_suavizado:p.prob)};}).filter(function(p){return p.ms>=fromMs&&p.ms<=toEndMs;});
+    });
+    var allMs=[]; zonas.forEach(function(z){ byZona[z.ugt].forEach(function(p){allMs.push(p.ms);}); });
+    return {byZona:byZona, zonas:zonas, allMs:allMs, minMs:fromMs, maxMs:toEndMs,
+      trueMaxMs:Math.min(rb.trueMaxMs,toEndMs), horizonEndMs:Math.min(rb.horizonEndMs,toEndMs), rawByZona:rb.trueByZona};
+  }
+
+  /* ---------- chart builders ---------- */
+  function buildMainChart(){
+    var g=MAIN, padL=g.padL,padR=g.padR,padT=g.padT,padB=g.padB,cw=g.cw,ch=g.ch;
+    var W=cw-padL-padR,H=ch-padT-padB;
+    var dom=mainChartDomain();
+    if(!dom){
+      return '<div style="padding:40px 0;text-align:center;color:var(--muted);font-size:12.5px">Aún no hay puntos en la serie de tiempo. Se irán acumulando semana a semana conforme corra el modelo.</div>';
+    }
+    var byZona={};
+    Object.keys(dom.byZona).forEach(function(k){ byZona[k]=smoothSeries(smoothSeries(smoothSeries(dom.byZona[k],5),5),5); });
+    var zonas=dom.zonas, minMs=dom.minMs, maxMs=dom.maxMs, trueMaxMs=dom.trueMaxMs, horizonEndMs=dom.horizonEndMs;
+    function X(ms){ return padL+(maxMs===minMs?0:(ms-minMs)/(maxMs-minMs))*W; }
+    function Y(v){return padT+(1-v)*H;}
+    var svg='';
+    [0,0.25,0.5,0.75,1].forEach(function(gv){
+      var y=Y(gv);
+      svg+='<line x1="'+padL+'" x2="'+(cw-padR)+'" y1="'+y+'" y2="'+y+'" style="stroke:var(--grid)" stroke-width="1"></line>';
+      svg+='<text x="'+(padL-8)+'" y="'+(y+3.5)+'" text-anchor="end" style="fill:var(--muted);font-size:10.5px;font-weight:600">'+Math.round(gv*100)+'%</text>';
+    });
+    var showCorte = trueMaxMs>=minMs && trueMaxMs<=maxMs;
+    var showForecast = showCorte && horizonEndMs>trueMaxMs;
+    if(showCorte){
+      var xCorte=X(trueMaxMs);
+      svg+='<line x1="'+xCorte+'" x2="'+xCorte+'" y1="'+padT+'" y2="'+(padT+H)+'" style="stroke:var(--med)" stroke-width="1.4" stroke-dasharray="4 3" opacity=".8"></line>';
+      svg+='<text x="'+xCorte+'" y="'+(padT-6)+'" text-anchor="'+(showForecast?'start':'middle')+'" style="fill:var(--med);font-size:9.5px;font-weight:700">'+(showForecast?'Hoy · pronóstico →':'Hoy')+'</text>';
+      if(showForecast){
+        svg+='<rect x="'+xCorte+'" y="'+padT+'" width="'+((cw-padR)-xCorte)+'" height="'+H+'" style="fill:var(--med);opacity:.08"></rect>';
+      }
+    }
+    zonas.forEach(function(z){
+      if(state.hidden[z.ugt]) return;
+      var pts=(byZona[z.ugt]||[]);
+      var coords=pts.map(function(p){ return [X(p.ms),Y(p.probDisplay)]; });
+      if(coords.length>1){
+        svg+='<path d="'+smoothPath(coords)+'" fill="none" style="stroke:'+zonaColor(z.ugt)+'" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path>';
+      }
+      if(showForecast){
+        var rawPts=(dom.rawByZona[z.ugt]||[]);
+        if(rawPts.length){
+          var lastRaw=rawPts[rawPts.length-1];
+          var lastMs=parseYMD(lastRaw.semana);
+          var segEndMs=Math.min(lastMs+HORIZON_DAYS*DAY_MS, maxMs);
+          if(segEndMs>lastMs){
+            var lastCoord=coords.length?coords[coords.length-1]:null;
+            var x1=lastCoord?lastCoord[0]:X(lastMs), x2e=X(segEndMs), y1=lastCoord?lastCoord[1]:Y(lastRaw.prob_suavizado!=null?lastRaw.prob_suavizado:lastRaw.prob);
+            // curva de transicion: continua suavemente el movimiento real hasta
+            // aplanarse en el valor del pronostico -- mismo valor final que una
+            // linea recta, solo que sin el "codo" visual al entrar en la zona
+            // de pronostico. El pronostico sigue siendo un valor plano, no una
+            // tendencia inventada.
+            var prevCoord=coords.length>1?coords[coords.length-2]:null;
+            var tangentY=prevCoord?(y1-prevCoord[1]):0;
+            var c1x=x1+(x2e-x1)*0.35, c1y=y1+tangentY*0.25;
+            var c2x=x1+(x2e-x1)*0.7, c2y=y1;
+            svg+='<path d="M'+x1+' '+y1+' C'+c1x+' '+c1y+','+c2x+' '+c2y+','+x2e+' '+y1+'" fill="none" style="stroke:'+zonaColor(z.ugt)+'" stroke-width="2.2" stroke-dasharray="2 4" stroke-linecap="round" opacity=".8"></path>';
+            svg+='<circle cx="'+x2e+'" cy="'+y1+'" r="3.6" fill="'+zonaColor(z.ugt)+'" stroke="var(--panel)" stroke-width="1.4" opacity=".8"></circle>';
+            // marca la fecha critica sobre el tramo de pronostico si cae dentro de esta ventana
+            var pf=z.proxima_fecha_critica;
+            if(pf && pf.fecha){
+              var pfMs=parseYMD(pf.fecha);
+              if(pfMs>=lastMs && pfMs<=segEndMs){
+                var xpf=X(pfMs);
+                svg+='<line x1="'+xpf+'" x2="'+xpf+'" y1="'+(y1-9)+'" y2="'+(y1+9)+'" style="stroke:'+zonaColor(z.ugt)+'" stroke-width="1.6" opacity=".9"></line>';
+                svg+='<circle cx="'+xpf+'" cy="'+y1+'" r="4.5" fill="var(--panel)" stroke="'+zonaColor(z.ugt)+'" stroke-width="2"></circle>';
+              }
+            }
+          }
+        }
+      }
+    });
+    var uniqMs=[]; var seenMs={};
+    dom.allMs.forEach(function(ms){ if(!seenMs[ms]){seenMs[ms]=1; uniqMs.push(ms);} });
+    uniqMs.sort(function(a,b){return a-b;});
+    var ticks=Math.min(12,uniqMs.length);
+    var tickMsList=[];
+    for(var k=0;k<ticks;k++){
+      var idx=Math.round(k/(ticks-1||1)*(uniqMs.length-1));
+      var ms=uniqMs[idx];
+      tickMsList.push(ms);
+      var x=X(ms);
+      svg+='<text x="'+x+'" y="'+(ch-padB+20)+'" text-anchor="middle" style="fill:var(--muted);font-size:9.5px;font-weight:600">'+fmtDayMonthPadded(ms)+'</text>';
+    }
+    var yearGroups={};
+    tickMsList.forEach(function(ms){
+      var yr=new Date(ms).getUTCFullYear();
+      (yearGroups[yr]=yearGroups[yr]||[]).push(ms);
+    });
+    Object.keys(yearGroups).forEach(function(yr){
+      var xs=yearGroups[yr].map(X);
+      var cx=(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2;
+      svg+='<text x="'+cx+'" y="'+(ch-padB+34)+'" text-anchor="middle" style="fill:var(--sub);font-size:10.5px;font-weight:800">'+yr+'</text>';
+    });
+    var tooltip='';
+    var hi=state.hover;
+    if(hi!=null){
+      var x2=X(hi);
+      svg+='<line x1="'+x2+'" x2="'+x2+'" y1="'+padT+'" y2="'+(padT+H)+'" style="stroke:var(--sub)" stroke-width="1" stroke-dasharray="3 3" opacity=".6"></line>';
+      var rows='';
+      zonas.forEach(function(z){
+        if(state.hidden[z.ugt]) return;
+        var pt=(byZona[z.ugt]||[]).filter(function(p){return p.ms===hi;})[0];
+        if(!pt) return;
+        var y3=Y(pt.probDisplay);
+        svg+='<circle cx="'+x2+'" cy="'+y3+'" r="4.5" fill="'+zonaColor(z.ugt)+'" stroke="var(--panel)" stroke-width="2"></circle>';
+        rows+='<div style="display:flex;align-items:center;gap:6px;justify-content:space-between">'+
+          '<span style="display:flex;align-items:center;gap:6px;color:var(--sub);font-weight:600">'+
+          '<span style="width:8px;height:8px;border-radius:2px;background:'+zonaColor(z.ugt)+';display:inline-block"></span>'+esc(zonaLabel(z))+'</span>'+
+          '<strong style="color:var(--text);font-variant-numeric:tabular-nums">'+fmtPct(pt.prob)+'</strong></div>';
+      });
+      if(rows){
+        var leftPct=clamp((x2/cw)*100,2,80);
+        tooltip='<div style="position:absolute;left:'+leftPct+'%;top:'+(padT+6)+'px;width:190px;background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.22);padding:8px 11px;pointer-events:none;font-size:11.5px;z-index:5">'+
+          '<div style="font-weight:800;font-size:11px;margin-bottom:6px;color:var(--text)">Semana del '+fmtDateISO(hi)+' · probabilidad de protesta (30 días)</div>'+rows+'</div>';
+      }
+    } else if(state.hoverForecast && showForecast){
+      var frows='';
+      zonas.forEach(function(z){
+        if(state.hidden[z.ugt]) return;
+        var rawPts=(dom.rawByZona[z.ugt]||[]);
+        if(!rawPts.length) return;
+        var lastRaw=rawPts[rawPts.length-1];
+        var lastMsZ=parseYMD(lastRaw.semana);
+        var segEndMsZ=Math.min(lastMsZ+HORIZON_DAYS*DAY_MS, maxMs);
+        var explic=explicacionNivel(z);
+        frows+='<div style="margin-bottom:8px">'+
+          '<div style="display:flex;align-items:center;gap:6px;font-weight:800;color:var(--text)">'+
+            '<span style="width:8px;height:8px;border-radius:2px;background:'+zonaColor(z.ugt)+';display:inline-block"></span>'+esc(zonaLabel(z))+
+          '</div>'+
+          '<div style="color:var(--muted);font-size:10.5px;margin-top:2px">Vigente hasta '+fmtDateISO(segEndMsZ)+'</div>'+
+          (explic?'<div style="color:var(--sub);margin-top:3px;line-height:1.4">'+esc(explic)+'</div>':'')+
+        '</div>';
+      });
+      if(frows){
+        var xMid=(X(trueMaxMs)+(cw-padR))/2;
+        var leftPctF=clamp((xMid/cw)*100,2,72);
+        tooltip='<div style="position:absolute;left:'+leftPctF+'%;top:'+(padT+6)+'px;width:220px;background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.22);padding:9px 12px;pointer-events:none;font-size:11.5px;z-index:5">'+
+          '<div style="font-weight:800;font-size:11px;margin-bottom:6px;color:var(--med)">Contexto del pronóstico</div>'+frows+
+          '<div style="font-size:10px;color:var(--muted);line-height:1.4;padding-top:4px;border-top:1px solid var(--border)">No es una predicción de tendencia — el modelo mantiene este valor durante toda la ventana. Esto es contexto real que puede influir en las próximas semanas.</div>'+
+        '</div>';
+      }
+    }
+    return '<div style="position:relative;width:100%;margin-top:8px">'+
+      '<svg data-chart="main" width="'+cw+'" height="'+ch+'" viewBox="0 0 '+cw+' '+ch+'" style="display:block;width:100%;height:auto;cursor:crosshair">'+svg+'</svg>'+tooltip+'</div>';
+  }
+
+  /* ---------- markup sections ---------- */
+  function header(){
+    var dark=state.dark;
+    var semana=state.data?state.data.meta.semana_mas_reciente:null;
+    return '<header style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">'+
+      '<div style="display:flex;align-items:center;gap:14px;min-width:0">'+
+        '<div style="background:#fff;border:1px solid var(--border);border-radius:11px;padding:7px 12px;display:flex;align-items:center;box-shadow:var(--shadow)"><img src="images/logoPROTECTA.png" alt="PROTECTA Perú" style="height:80px;width:auto;display:block"></div>'+
+        '<div style="min-width:0">'+
+          '<div style="font-size:19px;font-weight:800;letter-spacing:-.3px;line-height:1.15">Sistema de Alerta Temprana</div>'+
+          '<div style="font-size:12.5px;color:var(--sub);font-weight:500;margin-top:2px">Conflictos sociales · Unidad Antamina, Áncash</div>'+
+        '</div>'+
+      '</div>'+
+      '<div style="flex:1"></div>'+
+      '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">'+
+        (semana?(
+        '<div style="display:flex;align-items:center;gap:7px;background:var(--lo-soft);color:var(--lo);border:1px solid var(--border);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600">'+
+          '<span style="width:7px;height:7px;border-radius:50%;background:var(--lo);box-shadow:0 0 0 3px color-mix(in srgb,var(--lo) 22%,transparent)"></span>'+
+          'Semana activa · '+esc(semana)+'</div>'):'')+
+        '<button data-action="toggle-theme" style="display:flex;align-items:center;gap:8px;background:var(--panel);color:var(--text);border:1px solid var(--border);padding:8px 13px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:var(--shadow)">'+
+          '<span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);background:'+(dark?'var(--accent)':'transparent')+'"></span>'+
+          (dark?'Modo claro':'Modo oscuro')+'</button>'+
+      '</div>'+
+    '</header>';
+  }
+
+  function banner(){
+    return '<div style="display:flex;align-items:center;gap:11px;margin-top:16px;background:var(--med-soft);border:1px solid color-mix(in srgb,var(--med) 30%,transparent);border-radius:10px;padding:10px 15px;font-size:12.5px;color:var(--text);font-weight:500">'+
+      '<span style="flex:none;width:19px;height:19px;border-radius:50%;background:var(--med);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px">!</span>'+
+      '<span>Las probabilidades mostradas son una <strong>estimación del modelo predictivo</strong>, no una certeza. Úselas como apoyo a la decisión junto con el criterio del equipo de relacionamiento comunitario.</span>'+
+    '</div>';
+  }
+
+  function mainChartSection(){
+    var zonas=todasZonas();
+    var rb=realBounds();
+    ensureDefaultRange(rb);
+
+    var forecastBadge='';
+    if(rb && rb.horizonEndMs>rb.trueMaxMs){
+      forecastBadge='<span style="display:inline-flex;align-items:center;background:var(--med-soft);color:var(--med);border:1px solid color-mix(in srgb,var(--med) 30%,transparent);padding:5px 12px;border-radius:999px;font-size:11.5px;font-weight:700">Pronóstico: '+fmtDayMonth(rb.trueMaxMs+DAY_MS,false)+' – '+fmtDayMonth(rb.horizonEndMs,true)+'</span>';
+    }
+
+    var monthOpts = rb ? monthOptsRange(keyOfMonth(rb.trueMinMs), keyOfMonth(rb.horizonEndMs)) : [];
+    function monthSelect(role,val){
+      return '<select data-role="'+role+'" style="font-family:inherit;font-size:12.5px;font-weight:600;color:var(--text);background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;cursor:pointer">'+
+        monthOpts.map(function(m){return '<option value="'+m.v+'"'+(m.v===val?' selected':'')+'>'+m.label+'</option>';}).join('')+
+      '</select>';
+    }
+
+    var granBtns =
+      '<span style="cursor:not-allowed;font-size:12px;font-weight:600;padding:6px 12px;border-radius:7px;color:var(--muted)" title="No hay datos diarios disponibles aún">Día</span>'+
+      '<button data-action="set-gran" data-value="week" style="border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border-radius:7px;background:'+(state.gran==='week'?'var(--accent)':'transparent')+';color:'+(state.gran==='week'?'#fff':'var(--sub)')+'">Semana</button>'+
+      '<button data-action="set-gran" data-value="month" style="border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border-radius:7px;background:'+(state.gran==='month'?'var(--accent)':'transparent')+';color:'+(state.gran==='month'?'#fff':'var(--sub)')+'">Mes</button>';
+
+    var rangoBtns=['6m','12m','todo','pronostico'].map(function(kind){
+      var labels={'6m':'6M','12m':'12M','todo':'Todo','pronostico':'Pronóstico'};
+      return '<button data-action="rango" data-kind="'+kind+'" style="border:1px solid var(--border);cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;padding:7px 12px;border-radius:8px;background:var(--panel2);color:var(--text)">'+labels[kind]+'</button>';
+    }).join('');
+
+    var legendBtns=zonas.map(function(z){
+      var hidden=!!state.hidden[z.ugt];
+      var val = z.prob_actual!=null ? fmtPct(z.prob_actual) : '—';
+      return '<button data-action="toggle-legend" data-zone="'+z.ugt+'" style="display:flex;align-items:center;gap:8px;border:1px solid color-mix(in srgb,'+zonaColor(z.ugt)+' 35%,var(--border));cursor:pointer;font-family:inherit;padding:7px 12px;border-radius:999px;background:var(--panel2);color:var(--text);opacity:'+(hidden?0.4:1)+'">'+
+        '<span style="width:14px;height:2.5px;border-radius:2px;background:'+zonaColor(z.ugt)+';display:inline-block"></span>'+
+        '<span style="font-size:12px;font-weight:700">'+esc(zonaLabel(z))+'</span>'+
+        '<span style="font-size:12px;font-weight:800;color:'+zonaColor(z.ugt)+'">'+val+'</span>'+
+      '</button>';
+    }).join('');
+
+    return '<section style="margin-top:18px;background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px 18px">'+
+      '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">'+
+        '<span style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:800">Gráfico principal</span>'+
+        forecastBadge+
+      '</div>'+
+      '<div style="font-size:16.5px;font-weight:800;letter-spacing:-.2px;margin-top:6px">Tendencia y pronóstico de riesgo por UGT</div>'+
+      '<div style="font-size:11.5px;color:var(--sub);font-weight:500;margin-top:4px">Probabilidad de protesta (%) en el tiempo · línea continua = histórico · línea discontinua = pronóstico · pase el cursor para ver el detalle</div>'+
+
+      '<div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end;margin-top:16px">'+
+        '<div><div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px">Granularidad</div>'+
+          '<div style="display:inline-flex;background:var(--panel2);border:1px solid var(--border);border-radius:9px;padding:3px">'+granBtns+'</div></div>'+
+        '<label style="display:flex;flex-direction:column;gap:4px;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)">Desde'+monthSelect('from',state.fromVal)+'</label>'+
+        '<label style="display:flex;flex-direction:column;gap:4px;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)">Hasta'+monthSelect('to',state.toVal)+'</label>'+
+        '<div><div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px">Rangos</div>'+
+          '<div style="display:flex;gap:7px;flex-wrap:wrap">'+rangoBtns+'</div></div>'+
+      '</div>'+
+      buildMainChart()+
+      '<div style="font-size:10.5px;color:var(--muted);margin-top:8px">El modelo usa señales como protestas recientes, reportes de relacionamiento comunitario, el calendario de fechas críticas y el contexto electoral; se actualiza cada semana (pase el cursor para ver el valor exacto). Todo el histórico se calculó con el mismo modelo de forma consistente, sin saltos artificiales.</div>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">'+legendBtns+'</div>'+
+    '</section>';
+  }
+
+  function kpiSection(){
+    var zonas=todasZonas();
+    var conProb=zonas.filter(function(z){return z.prob_actual!=null;});
+    var maxZona=conProb.slice().sort(function(a,b){return b.prob_actual-a.prob_actual;})[0];
+    var enAlerta=zonas.filter(function(z){return z.nivel_riesgo==='ALTO';});
+    var eventos4w=zonas.reduce(function(s,z){return s+(z.n_eventos_4w||0);},0);
+
+    var kpis=[
+      {label:'Nivel más alto (30 días)',value: maxZona?esc(maxZona.nivel_riesgo||'—'):'—', sub: maxZona?(esc(zonaLabel(maxZona))+' · '+fmtPct(maxZona.prob_actual)):'Sin datos aún', color: maxZona?levelColor(maxZona.nivel_riesgo):'var(--hi)'},
+      {label:'Zonas en alerta (30 días)',value: zonas.length?(enAlerta.length+' / '+zonas.length):'—', sub: enAlerta.length?enAlerta.map(zonaLabel).join(', '):'Ninguna en este momento', color:'var(--hi)'},
+      {label:'Eventos últimas 4 semanas',value: ''+eventos4w, sub:'Suma de las '+zonas.length+' zonas', color:'var(--accent)'}
+    ];
+    return '<section style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px">'+
+      kpis.map(function(k){
+        return '<div style="background:var(--panel);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:15px 16px;display:flex;flex-direction:column;gap:7px;min-width:0">'+
+          '<div style="display:flex;align-items:center;gap:8px">'+
+            '<span style="width:9px;height:9px;border-radius:3px;background:'+k.color+'"></span>'+
+            '<span style="font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700">'+k.label+'</span>'+
+          '</div>'+
+          '<div style="font-size:26px;font-weight:800;letter-spacing:-.6px;line-height:1;color:'+k.color+'">'+k.value+'</div>'+
+          '<div style="font-size:11.5px;color:var(--sub);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+k.sub+'</div>'+
+        '</div>';
+      }).join('')+
+    '</section>';
+  }
+
+  function mapRankingDetail(){
+    var zonas=todasZonas();
+    var sel=state.selected;
+    var selZona=sel?zonas.filter(function(z){return z.ugt===sel;})[0]:null;
+    var clearBtn=sel?'<button data-action="clear-selection" style="display:flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--accent-soft);color:var(--accent);cursor:pointer;font-family:inherit;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px">'+esc(zonaLabel(selZona))+' ✕</button>':'';
+
+    var pins=zonas.map(function(z){
+      var puntos=(z.mapa_x!=null&&z.mapa_y!=null)?[{nombre:null,x:z.mapa_x,y:z.mapa_y}]:[];
+      var isSel=sel===z.ugt, hov=state.hoverPin===z.ugt;
+      var zi=isSel||hov?15:5;
+      var showChip=hov||isSel;
+      var badge = '<span style="font-size:15px;font-weight:800;color:'+levelColor(z.nivel_riesgo)+'">'+esc(z.nivel_riesgo||'—')+'</span>'+
+           '<div style="font-size:10px;color:var(--muted);font-weight:600;margin-top:1px">'+fmtPct(z.prob_actual)+' de probabilidad</div>';
+      var chip=showChip?(
+        '<div style="position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.22);padding:8px 11px;white-space:nowrap;z-index:20">'+
+          '<div style="font-size:11.5px;font-weight:800">'+esc(zonaLabel(z))+'</div>'+
+          '<div style="margin-top:3px">'+badge+'</div></div>'
+      ):'';
+      return puntos.map(function(p,i){
+        var isPrimary=i===0;
+        var size=isPrimary?(isSel?26:20):(isSel?17:13);
+        var ring=isSel?'8px':(hov?'6px':'0px');
+        var chipHere=(showChip&&isPrimary)?chip:'';
+        var pulse=isPrimary?'<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:'+zonaColor(z.ugt)+';animation:pulseRing 2.4s ease-out infinite"></span>':'';
+        return '<div data-pin="'+z.ugt+'" title="'+esc(p.nombre||zonaLabel(z))+'" style="position:absolute;left:'+p.x+'%;top:'+p.y+'%;transform:translate(-50%,-50%);cursor:pointer;z-index:'+(isPrimary?zi:zi-1)+'">'+
+          pulse+
+          '<span style="position:relative;display:block;width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+zonaColor(z.ugt)+';border:'+(isPrimary?'3px':'2px')+' solid #fff;box-shadow:0 2px 7px rgba(0,0,0,.35),0 0 0 '+ring+' color-mix(in srgb,'+zonaColor(z.ugt)+' 30%,transparent)"></span>'+
+          chipHere+
+        '</div>';
+      }).join('');
+    }).join('');
+
+    var detallesZonasHtml=zonas.map(function(z,i){
+      var isSel=sel===z.ugt;
+      var mini = [
+        {k:'Probabilidad (30 días)',v:fmtPct(z.prob_actual),color:levelColor(z.nivel_riesgo)},
+        {k:'Cambio vs. sem. anterior',v: z.tendencia_delta==null?'—':((z.tendencia_delta>=0?'↑ +':'↓ ')+Math.round(z.tendencia_delta*100)+' pts'),color:'var(--text)'},
+        {k:'Eventos (4 sem.)',v:''+(z.n_eventos_4w==null?'—':z.n_eventos_4w),color:'var(--text)'},
+        {k:'Días s/ última protesta',v:''+(z.dias_desde_ultima_protesta==null?'—':z.dias_desde_ultima_protesta),color:'var(--text)'}
+      ];
+      var miniHtml=mini.map(function(m){
+        return '<div style="background:var(--panel2);border:1px solid var(--border);border-radius:9px;padding:7px 9px">'+
+          '<div style="font-size:9px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);font-weight:700">'+m.k+'</div>'+
+          '<div style="font-size:15px;font-weight:800;margin-top:2px;color:'+m.color+'">'+m.v+'</div></div>';
+      }).join('');
+      var levelBadge = '<span style="flex:none;font-size:10.5px;font-weight:700;color:'+levelColor(z.nivel_riesgo)+';background:'+levelSoft(z.nivel_riesgo)+';padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,'+levelColor(z.nivel_riesgo)+' 30%,transparent)">'+esc(z.nivel_riesgo||'—')+'</span>';
+      var explicacion=explicacionNivel(z);
+      var explicacionHtml=explicacion?'<div style="font-size:11.5px;line-height:1.5;color:var(--sub);font-style:italic;margin-top:8px">'+esc(explicacion)+'</div>':'';
+      var alertaElectoralHtml=z.alerta_electoral?(
+        '<div style="font-size:11px;color:#8b5cf6;margin-top:6px"><strong>Alerta electoral:</strong> <span style="color:var(--text)">'+esc(z.alerta_electoral.accion_recomendada||'')+'</span></div>'
+      ):'';
+      return '<div data-action="select-zone" data-zone="'+z.ugt+'" style="cursor:pointer;padding:12px;border-radius:12px;border:1.5px solid '+(isSel?'color-mix(in srgb,var(--accent) 45%,transparent)':'var(--border)')+';background:'+(isSel?'var(--accent-soft)':'var(--panel2)')+(i>0?';margin-top:10px':'')+'">'+
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">'+
+          '<span style="display:flex;align-items:center;gap:7px;min-width:0;font-weight:800;font-size:13px;color:var(--text)"><span style="width:9px;height:9px;border-radius:3px;background:'+zonaColor(z.ugt)+';flex:none"></span>'+esc(zonaLabel(z))+'</span>'+
+          levelBadge+
+        '</div>'+
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px">'+miniHtml+'</div>'+
+        explicacionHtml+alertaElectoralHtml+
+      '</div>';
+    }).join('');
+
+    var proximas=proximasFechasCriticas().slice(0,12);
+    var proximasHtml = proximas.length ? proximas.map(function(p){
+      var fuenteTexto=p.evidencia_historica||'';
+      var fuenteIcon = p.fuente_url
+        ? '<a href="'+esc(p.fuente_url)+'" target="_blank" rel="noopener noreferrer" title="'+esc(fuenteTexto?fuenteTexto+' · abrir fuente':'Abrir fuente')+'" style="flex:none;cursor:pointer;color:var(--accent);text-decoration:none;border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:10px">↗</a>'
+        : (fuenteTexto ? '<span title="'+esc(fuenteTexto+' · análisis interno sobre datos privados del cliente, sin documento público que enlazar')+'" style="flex:none;cursor:help;color:var(--muted);opacity:.6;border:1px solid var(--border);border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:9.5px;font-style:italic;font-weight:700">i</span>' : '');
+      var dias = p.dias_restantes;
+      var diasTxt = dias==null?'':(dias===0?'hoy':dias===1?'en 1 día':'en '+dias+' días');
+      var fechaTxt = p.fecha || p.fecha_periodo || '—';
+      var critBadge = p.criticidad ? '<span style="flex:none;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:'+criticidadColor(p.criticidad)+';background:color-mix(in srgb,'+criticidadColor(p.criticidad)+' 14%,var(--panel2));border:1px solid color-mix(in srgb,'+criticidadColor(p.criticidad)+' 30%,transparent);border-radius:999px;padding:2px 8px">'+esc(p.criticidad)+'</span>' : '';
+      return '<div style="padding:9px 0;border-bottom:1px solid var(--border)">'+
+        '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">'+
+          '<div style="min-width:0;font-size:12px;font-weight:700;color:var(--text)">'+esc(p.evento)+'</div>'+
+          '<div style="flex:none;text-align:right">'+
+            '<div style="font-size:12px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums">'+esc(fechaTxt)+'</div>'+
+            (diasTxt?('<div style="font-size:9.5px;color:var(--muted);margin-top:1px">'+diasTxt+'</div>'):'')+
+          '</div>'+
+        '</div>'+
+        '<div style="display:flex;align-items:center;gap:6px;margin-top:4px">'+critBadge+'<span style="font-size:10.5px;color:var(--muted)">'+(p.ugts||[]).map(function(id){return esc(zonaLabel({ugt:id,label:(function(){var z0=zonas.filter(function(zz){return zz.ugt===id;})[0];return z0?z0.label:id;})()}));}).join(', ')+'</span></div>'+
+        (fuenteTexto||fuenteIcon?('<div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4">'+
+          '<span style="min-width:0">'+fuenteTexto+'</span>'+fuenteIcon+
+        '</div>'):'')+
+      '</div>';
+    }).join('') : '<div style="color:var(--muted);font-size:12px;padding:10px 0">Sin fechas críticas próximas registradas.</div>';
+
+    return '<section style="display:grid;grid-template-columns:1.3fr 1.3fr 1fr;gap:14px;margin-top:16px">'+
+      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px 16px 14px;display:flex;flex-direction:column">'+
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">'+
+          '<div style="font-size:14.5px;font-weight:800">Mapa ejecutivo · Áncash</div>'+clearBtn+
+        '</div>'+
+        '<div style="position:relative;width:100%;aspect-ratio:1089/645;border-radius:12px;overflow:hidden;border:1px solid var(--border);background-image:url(\'data/mapaAntamina.png\');background-size:cover;background-position:center">'+
+          '<div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:12px">'+
+            '<span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#3a4650;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.6);border-radius:6px;padding:4px 9px">posición aproximada por UGT</span>'+
+          '</div>'+pins+
+        '</div>'+
+        '<div style="font-size:10.5px;color:var(--muted);margin-top:9px;font-weight:500">Pase el cursor para ver el detalle · haga clic en una zona para filtrar todo el tablero.</div>'+
+      '</div>'+
+      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column">'+
+        '<div style="font-size:14.5px;font-weight:800;margin-bottom:2px">Detalle de las zonas</div>'+detallesZonasHtml+
+      '</div>'+
+      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;min-height:0">'+
+        '<div style="display:flex;align-items:center;gap:6px">'+
+          '<div style="font-size:14.5px;font-weight:800">Próximas fechas críticas</div>'+
+          '<span style="cursor:help;color:var(--muted);font-size:11px;font-weight:800;border:1px solid var(--border);border-radius:50%;width:15px;height:15px;display:inline-flex;align-items:center;justify-content:center;flex:none" title="Solo se muestran fechas con respaldo histórico o de recurrencia anual confirmada para las UGTs de Antamina. Festividades sin evidencia directa quedan fuera de esta lista aunque estén en el calendario.">?</span>'+
+        '</div>'+
+        '<div style="font-size:11px;color:var(--sub);margin-top:2px;margin-bottom:4px">'+proximas.length+' fechas con evidencia histórica, próximos 12 meses</div>'+
+        '<div style="overflow-y:auto;max-height:460px">'+proximasHtml+'</div>'+
+      '</div>'+
+    '</section>';
+  }
+
+  function sourcesSection(){
+    return '<section style="margin-top:16px;background:var(--panel);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">'+
+      '<span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:800">Fuentes de datos</span>'+
+      '<div style="display:flex;gap:9px;flex-wrap:wrap">'+
+        SOURCES.map(function(s){
+          return '<span style="display:flex;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--border);border-radius:999px;padding:6px 12px" title="'+esc(s.desc)+'">'+
+            '<span style="width:6px;height:6px;border-radius:50%;background:var(--lo)"></span>'+
+            '<span style="font-size:12px;font-weight:600;color:var(--text)">'+esc(s.name)+'</span></span>';
+        }).join('')+
+      '</div>'+
+    '</section>';
+  }
+
+  function severidadColor(s){
+    var u=(s||'').toUpperCase();
+    if(u==='ALTO') return 'var(--hi)';
+    if(u==='MEDIO') return 'var(--med)';
+    if(u==='BAJO') return 'var(--lo)';
+    return 'var(--muted)';
+  }
+
+  function tableSection(){
+    var zonas=todasZonas();
+    var sel=state.selected;
+    var selZona=sel?zonas.filter(function(z){return z.ugt===sel;})[0]:null;
+    var clearBtn=sel?'<button data-action="clear-selection" style="display:flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--accent-soft);color:var(--accent);cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:999px">'+esc(zonaLabel(selZona))+' ✕ Ver todas</button>':'';
+
+    var eventos=(state.data.eventos_historicos||[]).slice();
+    var rows=sel?eventos.filter(function(e){return e.ugt===sel;}):eventos;
+    rows.sort(function(a,b){return a.fecha<b.fecha?1:-1;});
+
+    var rangoTxt = eventos.length ? (' · '+eventos[eventos.length-1].fecha+' a '+eventos[0].fecha) : '';
+
+    var body=rows.map(function(e){
+      var zonaObj=zonas.filter(function(z){return z.ugt===e.ugt;})[0];
+      var zonaTxt=zonaObj?zonaLabel(zonaObj):e.ugt;
+      var sevBadge = e.severidad
+        ? '<span style="display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;color:'+severidadColor(e.severidad)+';background:color-mix(in srgb,'+severidadColor(e.severidad)+' 14%,var(--panel2));padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,'+severidadColor(e.severidad)+' 28%,transparent)">'+esc(e.severidad)+'</span>'
+        : '—';
+      return '<tr style="border-bottom:1px solid var(--border)">'+
+        '<td style="padding:11px 16px;color:var(--sub);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap">'+e.fecha+'</td>'+
+        '<td style="padding:11px 12px"><span style="display:inline-flex;align-items:center;gap:6px;font-weight:700;white-space:nowrap"><span style="width:9px;height:9px;border-radius:3px;background:'+zonaColor(e.ugt)+';flex:none"></span>'+esc(zonaTxt)+'</span></td>'+
+        '<td style="padding:11px 12px;color:var(--text);font-weight:500">'+esc(e.evento||'—')+'</td>'+
+        '<td style="padding:11px 12px;text-align:center">'+sevBadge+'</td>'+
+        '<td style="padding:11px 16px;text-align:center">'+(e.fuente_url?('<a href="'+esc(e.fuente_url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:5px 10px;border-radius:999px;text-decoration:none">Ver fuente ↗</a>'):'—')+'</td>'+
+      '</tr>';
+    }).join('');
+
+    return '<section style="margin-top:16px;background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px 12px;flex-wrap:wrap">'+
+        '<div><div style="font-size:15px;font-weight:800">Historial de eventos de protesta y conflicto social</div>'+
+        '<div style="font-size:11.5px;color:var(--sub);margin-top:2px">'+rows.length+' eventos'+(sel?' en '+esc(zonaLabel(selZona)):' registrados')+rangoTxt+' · fuente verificable por evento</div></div>'+
+        clearBtn+
+      '</div>'+
+      '<div style="overflow-x:auto;overflow-y:auto;max-height:560px">'+
+        (rows.length ? (
+        '<table style="width:100%;border-collapse:collapse;font-size:12.5px">'+
+        '<thead><tr style="background:var(--panel2)">'+
+          '<th style="text-align:left;padding:10px 16px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel2)">Fecha</th>'+
+          '<th style="text-align:left;padding:10px 12px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel2)">UGT</th>'+
+          '<th style="text-align:left;padding:10px 12px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel2)">Evento</th>'+
+          '<th style="text-align:center;padding:10px 12px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel2)">Severidad</th>'+
+          '<th style="text-align:center;padding:10px 16px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel2)">Fuente</th>'+
+        '</tr></thead><tbody>'+body+'</tbody></table>'
+        ) : '<div style="padding:24px 20px;color:var(--muted);font-size:12.5px;text-align:center">Sin eventos históricos registrados aún.</div>')+
+      '</div>'+
+    '</section>';
+  }
+
+  function actoresSection(){
+    var actores=(state.data.actores_criticos||[]).slice();
+    if(!actores.length) return '';
+    var actualizado=state.data.meta?state.data.meta.actores_criticos_actualizado:null;
+
+    var body=actores.map(function(a){
+      var meta=[];
+      if(a.ultima_mencion) meta.push('Última mención conocida: '+a.ultima_mencion);
+      meta.push(a.n_apariciones+(a.n_apariciones===1?' reporte':' reportes'));
+      return '<div style="padding:10px 0;border-bottom:1px solid var(--border)">'+
+        '<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap">'+
+          '<span style="font-weight:700;font-size:12.5px;color:var(--text)">'+esc(a.nombre)+'</span>'+
+          '<span style="font-size:10px;color:var(--muted);white-space:nowrap">'+esc(meta.join(' · '))+'</span>'+
+        '</div>'+
+        (a.cargo_o_rol||a.distrito_o_zona?('<div style="font-size:11px;color:var(--sub);margin-top:2px">'+[a.cargo_o_rol,a.distrito_o_zona].filter(Boolean).map(esc).join(' · ')+'</div>'):'')+
+        (a.contexto_resumen?('<div style="font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5">'+esc(a.contexto_resumen)+'</div>'):'')+
+      '</div>';
+    }).join('');
+
+    return '<section style="margin-top:16px;background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden">'+
+      '<div style="padding:16px 20px 10px">'+
+        '<div style="font-size:14px;font-weight:800;color:var(--sub)">Actores relevantes en la conflictividad social</div>'+
+        '<div style="font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5">'+actores.length+' actores (alcaldes, dirigentes, voceros y funcionarios) mencionados en monitoreo de medios y reportes de campo · contexto informativo, no una señal validada del modelo · catálogo estático'+(actualizado?(', cargado '+esc(actualizado)):'')+' — no es monitoreo en tiempo real.</div>'+
+      '</div>'+
+      '<div style="padding:0 20px 14px;overflow-y:auto;max-height:480px">'+body+'</div>'+
+    '</section>';
+  }
+
+  function footer(){
+    var gen=state.data&&state.data.meta?state.data.meta.generado_en:null;
+    return '<div style="text-align:center;font-size:11px;color:var(--muted);margin-top:22px;font-weight:500">PROTECTA Perú · Sistema de Alerta Temprana de Conflictos Sociales'+(gen?(' · datos generados '+esc(gen)):'')+'</div>';
+  }
+
+  /* ---------- render ---------- */
+  var root = document.getElementById('root');
+
+  function shell(inner){
+    return '<div data-theme="'+(state.dark?'dark':'light')+'" style="min-height:100vh;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;transition:background .25s,color .25s">'+
+      '<div style="max-width:1380px;margin:0 auto;padding:22px 26px 60px">'+inner+'</div></div>';
+  }
+
+  function render(){
+    var html;
+    if(state.loadError){
+      html = shell(header()+
+        '<div style="margin-top:24px;background:var(--panel);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:28px;text-align:center;color:var(--sub);font-size:13px">'+
+          'No se pudieron cargar los datos del tablero (<code>data/data.json</code>). Verifique que el archivo exista y sea accesible, luego recargue la página.'+
+        '</div>');
+    } else if(!state.data){
+      html = shell(header()+
+        '<div style="margin-top:24px;text-align:center;color:var(--muted);font-size:13px;padding:60px 0">Cargando datos del tablero…</div>');
+    } else {
+      html = shell(header()+banner()+mainChartSection()+kpiSection()+mapRankingDetail()+tableSection()+actoresSection()+sourcesSection()+footer());
+    }
+    root.innerHTML = html;
+    wireMainChart();
+  }
+
+  function wireMainChart(){
+    var svg = root.querySelector('[data-chart="main"]');
+    if(!svg) return;
+    var g=MAIN, padL=g.padL,padR=g.padR,cw=g.cw;
+    var W=cw-padL-padR;
+    svg.addEventListener('mousemove',function(e){
+      var dom=mainChartDomain();
+      if(!dom) return;
+      var rect=svg.getBoundingClientRect();
+      var scale=rect.width/cw;
+      var localX=(e.clientX-rect.left)/scale;
+      var frac=clamp((localX-padL)/W,0,1);
+      var ms=dom.minMs+frac*(dom.maxMs-dom.minMs);
+      var inForecast = dom.horizonEndMs>dom.trueMaxMs && ms>dom.trueMaxMs && ms<=dom.maxMs;
+      if(inForecast){
+        if(!state.hoverForecast || state.hover!==null){ state.hoverForecast=true; state.hover=null; render(); }
+        return;
+      }
+      if(!dom.allMs.length) return;
+      var uniqMs=[]; var seenMs={};
+      dom.allMs.forEach(function(m){ if(!seenMs[m]){seenMs[m]=1; uniqMs.push(m);} });
+      var nearest=uniqMs.reduce(function(best,m){ return Math.abs(m-ms)<Math.abs(best-ms)?m:best; }, uniqMs[0]);
+      if(nearest!==state.hover || state.hoverForecast){ state.hover=nearest; state.hoverForecast=false; render(); }
+    });
+    svg.addEventListener('mouseleave',function(){
+      if(state.hover!==null || state.hoverForecast){ state.hover=null; state.hoverForecast=false; render(); }
+    });
+  }
+
+  /* ---------- event delegation ---------- */
+  root.addEventListener('click',function(e){
+    var t=e.target.closest('[data-action]');
+    if(!t) return;
+    var action=t.getAttribute('data-action');
+    if(action==='toggle-theme'){ state.dark=!state.dark; render(); }
+    else if(action==='toggle-legend'){ var z=t.getAttribute('data-zone'); state.hidden[z]=!state.hidden[z]; render(); }
+    else if(action==='select-zone'){ var z2=t.getAttribute('data-zone'); state.selected=(state.selected===z2?null:z2); render(); }
+    else if(action==='clear-selection'){ state.selected=null; render(); }
+    else if(action==='set-gran'){ state.gran=t.getAttribute('data-value'); state.hover=null; render(); }
+    else if(action==='rango'){
+      var rb=realBounds();
+      if(rb){
+        var earliestKey=keyOfMonth(rb.trueMinMs), lastRealKey=keyOfMonth(rb.trueMaxMs), horizonKey=keyOfMonth(rb.horizonEndMs);
+        var kind=t.getAttribute('data-kind');
+        if(kind==='6m'){ state.fromVal=maxKey(earliestKey, shiftMonth(lastRealKey,-6)); state.toVal=horizonKey; }
+        else if(kind==='12m'){ state.fromVal=maxKey(earliestKey, shiftMonth(lastRealKey,-12)); state.toVal=horizonKey; }
+        else if(kind==='todo'){ state.fromVal=earliestKey; state.toVal=horizonKey; }
+        else if(kind==='pronostico'){ state.fromVal=lastRealKey; state.toVal=horizonKey; }
+      }
+      state.hover=null; render();
+    }
   });
 
-window.addEventListener('resize', () => {
-  const canvas = document.getElementById('chart-canvas');
-  if (canvas && canvas._serie) drawChart(canvas._serie);
-});
+  root.addEventListener('change',function(e){
+    if(e.target.matches('select[data-role="from"]')){ state.fromVal=e.target.value; state.hover=null; render(); }
+    else if(e.target.matches('select[data-role="to"]')){ state.toVal=e.target.value; state.hover=null; render(); }
+  });
+
+  root.addEventListener('mouseover',function(e){
+    var pin=e.target.closest('[data-pin]');
+    if(pin){ var id=pin.getAttribute('data-pin'); if(state.hoverPin!==id){ state.hoverPin=id; render(); } }
+  });
+  root.addEventListener('mouseout',function(e){
+    var pin=e.target.closest('[data-pin]');
+    if(pin && !(e.relatedTarget && pin.contains(e.relatedTarget))){ if(state.hoverPin){ state.hoverPin=null; render(); } }
+  });
+  root.addEventListener('click',function(e){
+    var pin=e.target.closest('[data-pin]');
+    if(pin){ var id=pin.getAttribute('data-pin'); state.selected=(state.selected===id?null:id); render(); }
+  });
+
+  render();
+
+  fetch('./data/data.json?v='+Date.now(), {cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(data){ state.data=data; render(); })
+    .catch(function(err){ state.loadError=err; render(); });
+})();
 </script>
 </body>
 </html>
