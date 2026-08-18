@@ -19,7 +19,7 @@ a:hover{text-decoration:underline}
 button,select{font-family:inherit}
 button{outline:none}
 ::selection{background:var(--accent-soft)}
-@keyframes pulseRing{0%{transform:scale(1);opacity:.55}70%{transform:scale(2.6);opacity:0}100%{opacity:0}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.4}70%{transform:scale(1.9);opacity:0}100%{opacity:0}}
 </style>
 </head>
 <body>
@@ -34,7 +34,7 @@ button{outline:none}
     {name:'Defensoría del Pueblo',desc:'Escalamiento de conflictos sociales reportados'},
     {name:'OEFA',desc:'Denuncias ambientales por zona'},
     {name:'INEI',desc:'Indicadores socioeconómicos y de pobreza'},
-    {name:'Monitoreo de medios',desc:'Volumen y tono de noticias locales/regionales'},
+    {name:'Monitoreo de medios COP',desc:'Volumen y tono de noticias locales/regionales'},
     {name:'Calendario cívico-electoral',desc:'Fechas críticas, festividades y proceso electoral 2026'}
   ];
 
@@ -75,26 +75,57 @@ button{outline:none}
   }
   function zonaColor(id){ return ZONA_COLORS[id] || 'var(--muted)'; }
   function zonaLabel(z){ return (z && z.label) ? z.label : (z ? z.ugt : ''); }
+  function eventosZonaEnRango(ugtId,desdeMs,hastaMs){
+    return (state.data.eventos_historicos||[]).filter(function(e){
+      if(e.ugt!==ugtId || !e.fecha) return false;
+      var ms=parseYMD(e.fecha);
+      return ms>=desdeMs && ms<=hastaMs;
+    });
+  }
+  function ultimoEventoZona(ugtId){
+    var evs=(state.data.eventos_historicos||[]).filter(function(e){return e.ugt===ugtId && e.fecha;});
+    evs.sort(function(a,b){return a.fecha<b.fecha?1:-1;});
+    return evs[0]||null;
+  }
+  function evidenciaHistoricaZona(ugtId){
+    var list=(state.data.calendario_fechas_criticas||[]).filter(function(c){
+      return (c.ugts||[]).indexOf(ugtId)!==-1 && c.evidencia_historica;
+    });
+    return list[0]||null;
+  }
   function explicacionNivel(z){
-    var factores=[];
-    if(z.racha_semanas_protesta!=null && z.racha_semanas_protesta>0){
-      factores.push('una racha activa de protestas ('+z.racha_semanas_protesta+' semana'+(z.racha_semanas_protesta>1?'s':'')+')');
+    var hoyStr=state.data.meta && state.data.meta.semana_mas_reciente;
+    if(!hoyStr) return null;
+    var hoyMs=parseYMD(hoyStr);
+    var clausulas=[];
+
+    var ev4w=eventosZonaEnRango(z.ugt,hoyMs-28*DAY_MS,hoyMs);
+    if(ev4w.length>0){
+      clausulas.push('se '+(ev4w.length>1?('han reportado '+ev4w.length+' casos'):'ha reportado 1 caso')+' de denuncia o tensión social en las últimas 4 semanas');
     }
-    if(z.dias_desde_ultima_protesta!=null){
-      if(z.dias_desde_ultima_protesta<=14) factores.push('una protesta reciente (hace '+z.dias_desde_ultima_protesta+' días)');
-      else if(z.dias_desde_ultima_protesta>90) factores.push('ausencia de protestas en los últimos '+z.dias_desde_ultima_protesta+' días');
-    }
-    if(z.proxima_fecha_critica && z.proxima_fecha_critica.fecha && z.semana){
-      var horizonMs=parseYMD(z.semana)+HORIZON_DAYS*DAY_MS;
-      if(parseYMD(z.proxima_fecha_critica.fecha)<=horizonMs){
-        factores.push('una fecha crítica próxima ('+z.proxima_fecha_critica.evento+', '+z.proxima_fecha_critica.fecha+')');
+
+    var ultimo=ultimoEventoZona(z.ugt);
+    if(ultimo){
+      var dias=Math.round((hoyMs-parseYMD(ultimo.fecha))/DAY_MS);
+      if(dias>=0 && dias<=14){
+        clausulas.push('el reporte más reciente ("'+ultimo.evento+'") fue hace '+(dias===0?'hoy':dias===1?'1 día':dias+' días'));
       }
     }
-    if(z.n_eventos_4w!=null && z.n_eventos_4w>=3){
-      factores.push(z.n_eventos_4w+' eventos registrados en las últimas 4 semanas');
+
+    var evid=evidenciaHistoricaZona(z.ugt);
+    if(evid){
+      clausulas.push('en el histórico ya se registraron conflictos asociados a "'+evid.evento+'" en esta zona');
     }
-    if(!factores.length) return null;
-    return 'Este nivel se explica principalmente por '+factores.slice(0,3).join(', ')+'.';
+
+    if(z.proxima_fecha_critica && z.proxima_fecha_critica.fecha){
+      var horizonMs=hoyMs+HORIZON_DAYS*DAY_MS;
+      if(parseYMD(z.proxima_fecha_critica.fecha)<=horizonMs){
+        clausulas.push('hay una fecha crítica próxima ('+z.proxima_fecha_critica.evento+', '+z.proxima_fecha_critica.fecha+')');
+      }
+    }
+
+    if(!clausulas.length) return null;
+    return 'En '+zonaLabel(z)+' tenemos '+fmtPct(z.prob_actual)+' de probabilidad de conflicto social en los próximos 30 días, debido a que '+clausulas.slice(0,2).join('; además, ')+'.';
   }
   var DAY_MS = 86400000;
   var HORIZON_DAYS = 30; // prob en serie_tiempo ya es P(protesta <= 30 dias) desde el cierre de esa semana
@@ -378,7 +409,7 @@ button{outline:none}
   function banner(){
     return '<div style="display:flex;align-items:center;gap:11px;margin-top:16px;background:var(--med-soft);border:1px solid color-mix(in srgb,var(--med) 30%,transparent);border-radius:10px;padding:10px 15px;font-size:12.5px;color:var(--text);font-weight:500">'+
       '<span style="flex:none;width:19px;height:19px;border-radius:50%;background:var(--med);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px">!</span>'+
-      '<span>Las probabilidades mostradas son una <strong>estimación del modelo predictivo</strong>, no una certeza. Úselas como apoyo a la decisión junto con el criterio del equipo de relacionamiento comunitario.</span>'+
+      '<span>Las probabilidades mostradas son una <strong>estimación del modelo predictivo</strong>, no una certeza. Úselas como apoyo a la decisión junto con el criterio del equipo de security, gestión social, riesgos y otros afines.</span>'+
     '</div>';
   }
 
@@ -446,7 +477,12 @@ button{outline:none}
     var conProb=zonas.filter(function(z){return z.prob_actual!=null;});
     var maxZona=conProb.slice().sort(function(a,b){return b.prob_actual-a.prob_actual;})[0];
     var enAlerta=zonas.filter(function(z){return z.nivel_riesgo==='ALTO';});
-    var eventos4w=zonas.reduce(function(s,z){return s+(z.n_eventos_4w||0);},0);
+    var hoyStrKpi=state.data.meta && state.data.meta.semana_mas_reciente;
+    var hoyMsKpi=hoyStrKpi?parseYMD(hoyStrKpi):null;
+    var eventos4w=zonas.reduce(function(s,z){
+      if(z.n_eventos_4w!=null) return s+z.n_eventos_4w;
+      return s+(hoyMsKpi!=null?eventosZonaEnRango(z.ugt,hoyMsKpi-28*DAY_MS,hoyMsKpi).length:0);
+    },0);
 
     var kpis=[
       {label:'Nivel más alto (30 días)',value: maxZona?esc(maxZona.nivel_riesgo||'—'):'—', sub: maxZona?(esc(zonaLabel(maxZona))+' · '+fmtPct(maxZona.prob_actual)):'Sin datos aún', color: maxZona?levelColor(maxZona.nivel_riesgo):'var(--hi)'},
@@ -487,25 +523,32 @@ button{outline:none}
       ):'';
       return puntos.map(function(p,i){
         var isPrimary=i===0;
-        var size=isPrimary?(isSel?26:20):(isSel?17:13);
-        var ring=isSel?'8px':(hov?'6px':'0px');
+        var size=isPrimary?(isSel?30:24):(isSel?20:16);
+        var ring=isSel?'5px':(hov?'4px':'0px');
         var chipHere=(showChip&&isPrimary)?chip:'';
-        var pulse=isPrimary?'<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:'+zonaColor(z.ugt)+';animation:pulseRing 2.4s ease-out infinite"></span>':'';
+        var pulse=isPrimary?'<span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+zonaColor(z.ugt)+';animation:pulseRing 2.4s ease-out infinite"></span>':'';
         return '<div data-pin="'+z.ugt+'" title="'+esc(p.nombre||zonaLabel(z))+'" style="position:absolute;left:'+p.x+'%;top:'+p.y+'%;transform:translate(-50%,-50%);cursor:pointer;z-index:'+(isPrimary?zi:zi-1)+'">'+
           pulse+
-          '<span style="position:relative;display:block;width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+zonaColor(z.ugt)+';border:'+(isPrimary?'3px':'2px')+' solid #fff;box-shadow:0 2px 7px rgba(0,0,0,.35),0 0 0 '+ring+' color-mix(in srgb,'+zonaColor(z.ugt)+' 30%,transparent)"></span>'+
+          '<span style="position:relative;display:block;width:'+size+'px;height:'+size+'px;border-radius:50%;background:transparent;border:'+(isPrimary?'3px':'2px')+' solid '+zonaColor(z.ugt)+';box-shadow:0 1px 4px rgba(0,0,0,.35),0 0 0 '+ring+' color-mix(in srgb,'+zonaColor(z.ugt)+' 30%,transparent)"></span>'+
           chipHere+
         '</div>';
       }).join('');
     }).join('');
 
+    var hoyStrDet=state.data.meta && state.data.meta.semana_mas_reciente;
+    var hoyMsDet=hoyStrDet?parseYMD(hoyStrDet):null;
     var detallesZonasHtml=zonas.map(function(z,i){
       var isSel=sel===z.ugt;
+      var eventos4wReal = hoyMsDet!=null ? eventosZonaEnRango(z.ugt,hoyMsDet-28*DAY_MS,hoyMsDet).length : null;
+      var ultimoEv = ultimoEventoZona(z.ugt);
+      var diasUltimoReal = (hoyMsDet!=null && ultimoEv) ? Math.round((hoyMsDet-parseYMD(ultimoEv.fecha))/DAY_MS) : null;
+      var eventos4w = z.n_eventos_4w!=null ? z.n_eventos_4w : eventos4wReal;
+      var diasUltima = z.dias_desde_ultima_protesta!=null ? z.dias_desde_ultima_protesta : diasUltimoReal;
       var mini = [
         {k:'Probabilidad (30 días)',v:fmtPct(z.prob_actual),color:levelColor(z.nivel_riesgo)},
         {k:'Cambio vs. sem. anterior',v: z.tendencia_delta==null?'—':((z.tendencia_delta>=0?'↑ +':'↓ ')+Math.round(z.tendencia_delta*100)+' pts'),color:'var(--text)'},
-        {k:'Eventos (4 sem.)',v:''+(z.n_eventos_4w==null?'—':z.n_eventos_4w),color:'var(--text)'},
-        {k:'Días s/ última protesta',v:''+(z.dias_desde_ultima_protesta==null?'—':z.dias_desde_ultima_protesta),color:'var(--text)'}
+        {k:'Eventos (4 sem.)',v:''+(eventos4w==null?'—':eventos4w),color:'var(--text)'},
+        {k:'Días s/ última protesta',v:''+(diasUltima==null?'—':diasUltima),color:'var(--text)'}
       ];
       var miniHtml=mini.map(function(m){
         return '<div style="background:var(--panel2);border:1px solid var(--border);border-radius:9px;padding:7px 9px">'+
@@ -554,19 +597,22 @@ button{outline:none}
     }).join('') : '<div style="color:var(--muted);font-size:12px;padding:10px 0">Sin fechas críticas próximas registradas.</div>';
 
     return '<section style="display:grid;grid-template-columns:1.3fr 1.3fr 1fr;gap:14px;margin-top:16px">'+
-      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px 16px 14px;display:flex;flex-direction:column">'+
+      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px 16px 14px;display:flex;flex-direction:column;min-height:0">'+
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">'+
           '<div style="font-size:14.5px;font-weight:800">Mapa ejecutivo · Áncash</div>'+clearBtn+
         '</div>'+
-        '<div style="position:relative;width:100%;aspect-ratio:1089/645;border-radius:12px;overflow:hidden;border:1px solid var(--border);background-image:url(\'data/mapaAntamina.png\');background-size:cover;background-position:center">'+
-          '<div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:12px">'+
-            '<span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#3a4650;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.6);border-radius:6px;padding:4px 9px">posición aproximada por UGT</span>'+
-          '</div>'+pins+
+        '<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:9px;min-height:0">'+
+          '<div style="position:relative;width:100%;aspect-ratio:1089/645;border-radius:12px;overflow:hidden;border:1px solid var(--border);background-image:url(\'data/mapaAntamina.png\');background-size:cover;background-position:center">'+
+            '<div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:12px">'+
+              '<span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#3a4650;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.6);border-radius:6px;padding:4px 9px">posición aproximada por UGT</span>'+
+            '</div>'+pins+
+          '</div>'+
+          '<div style="font-size:10.5px;color:var(--muted);font-weight:500">Pase el cursor para ver el detalle · haga clic en una zona para filtrar todo el tablero.</div>'+
         '</div>'+
-        '<div style="font-size:10.5px;color:var(--muted);margin-top:9px;font-weight:500">Pase el cursor para ver el detalle · haga clic en una zona para filtrar todo el tablero.</div>'+
       '</div>'+
-      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column">'+
-        '<div style="font-size:14.5px;font-weight:800;margin-bottom:2px">Detalle de las zonas</div>'+detallesZonasHtml+
+      '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;min-height:0">'+
+        '<div style="font-size:14.5px;font-weight:800;margin-bottom:2px">Detalle de las zonas</div>'+
+        '<div style="overflow-y:auto;max-height:460px">'+detallesZonasHtml+'</div>'+
       '</div>'+
       '<div style="background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;min-height:0">'+
         '<div style="display:flex;align-items:center;gap:6px">'+
